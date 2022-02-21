@@ -5,7 +5,7 @@ I Have Prepared a Excel Sheet in MarkDown in Table!
 | | | | | | | | |
 |-|-|-|-|-|-|-|-|
 |SNO.|Attributes|Sub-attributes|Unit-Test| Hospital| |Indian Railways| |
-| | | | |Achieved Rating|Max. Rating|AchievedRating|Max. Rating|
+| | | | |Achieved Rating|Max. Rating|Achieved Rating|Max. Rating|
 |1|Housekeeping Service|Washroom|Water available|1|1|1|1|
 | | | |Soap available|1|1|0|1|
 | | |Seating Seats|Clean Bench Seats|1|1|0|1|

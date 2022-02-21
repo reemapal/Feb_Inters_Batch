@@ -2,7 +2,8 @@
 <head>
 </head>
 <body>
-<h2>HTML Table</h2>
+  <h2>Hi, I'm Reema Pal!</h2> 
+<p>I Have Prepared a Excel Sheet in Hyper Text Markup Language in Table!</p>
 <table>
   <tr>
     <th>SNO</th>
@@ -176,7 +177,7 @@
   </tr>
   <tr>
     <td>4</td>
-    <td>Staff with Cusotmer</td>
+    <td><h4>Staff with Cusotmer</h4></td>
     <td>Communication	</td>
     <td>Polite</td>
     <td>1</td>

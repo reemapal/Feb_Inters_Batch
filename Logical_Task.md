@@ -1,7 +1,8 @@
 <!--Tables-->
-| **SNo.**| **Attributes** |  **Sub-attributes** | **Unit-Test** | **Hospital**	|	**Indian Railways** |
-| :---:   | :---           |   :---:             | :---:         | :---         |   :---:             |
-|**1**|**Incident Date** |**24th SEPTEMBER 2020** |
+| **SNo.**| **Attributes** |  **Sub-attributes** | **Unit-Test** | **Hospital**	| 	**Indian Railways** |
+| :---:   | :---           |   :---:             | :---:         | :---:        |   :---:             |
+|||||Achieved Rating : Max. Rating|Achieved Rating : Max. Rating|
+|**1**|**Housekeeping Service** |**24th SEPTEMBER 2020** |
 |**2**| **Incident Discription** | **Main Electric power supply board faliure**|
 |**3**|**Incident Alloted To** |**Electrician** |
 |**4**|**Incident Allotment Date** |**24th SEPTEMBER 2020** |

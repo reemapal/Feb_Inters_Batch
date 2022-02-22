@@ -21,13 +21,13 @@
 | | |Delivery|Delivery of Food to Customer on Time|1|1|0|1|
 | | |Order Food|Online available|0|1|1|1|
 | | |Fresh & Clean|Food is Fresh and Clean|1|1|0|1|
-| |**Total**| | |**4**|**4**|**1**|**4**|
+| |**Total**| | |**3**|**4**|**1**|**4**|
 | | | | | | | | |
 |**4**|**Staff with Cusotmer**|Communication |Polite|1|1|0|1|
 | | ||Friendliness|1|1|0|1|
 | | ||Listen Carefully|1 |1 |0 |1 |
 | | |Assistance|Staff Support Service|1|1|1|1|
-| |**Total**| | |**3**|**4**|**1**|**4**|
+| |**Total**| | |**4**|**4**|**1**|**4**|
 | | | | | | | | |
 |**5**|**Safety & Security**|CCTV|Surveillance is kept through CCTV cameras|1|1|1|1|
 | | |Security|Guards|1|1|0|1|
@@ -50,7 +50,7 @@
 | Housekeeping Service | 4 | ★★★★ |
 | Follow Covid Protocol| 4 | ★★★★ |
 | Catering Service     | 4 | ★★★★ |
-| Staff                | 3 | ★★★ |
+| Staff with Cusotmer  | 3 | ★★★ |
 | Safety & Security    | 3 | ★★★ |
 | Total                |18 | Good | 
 
@@ -61,7 +61,7 @@
 | Housekeeping Service | 1 | ★ |
 | Follow Covid Protocol| 1 | ★ |
 | Catering Service     | 1 | ★ |
-| Staff                | 1 | ★ |
+| Staff with Cusotmer  | 1 | ★ |
 | Safety & Security    | 2 | ★★ |
 | Total                |6  | Poor |
 

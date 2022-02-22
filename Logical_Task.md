@@ -24,9 +24,9 @@
 | |**Total**| | |**4**|**4**|**1**|**4**|
 | | | | | | | | |
 |**4**|**Staff with Cusotmer**|Communication |Polite|1|1|0|1|
-| | |Response|Timely response to customer requests|1|1|0|1|
-| | |Action|Take Action to customer requests|1 |1 |0 |1 |
-| | |Support|Staff Support|4|5|1|5|
+| | ||Friendliness|1|1|0|1|
+| | ||Listen Carefully|1 |1 |0 |1 |
+| | |Assistance|Staff Support Service|1|1|1|1|
 | |**Total**| | |**3**|**4**|**1**|**4**|
 | | | | | | | | |
 |**5**|**Safety & Security**|CCTV|Surveillance is kept through CCTV cameras|1|1|1|1|

@@ -10,7 +10,7 @@ Markdown allows you to write using an easy-to-read, easy-to-write plain text for
 
 | | | | | | | | |
 |-|-|-|-|-|-|-|-|
-|SNO.|Attributes|Sub-attributes|Unit-Test| Hospital| |Indian Railways| |
+|**SNO.**|**Attributes**|**Sub-attributes**|**Unit-Test**|**Hospital**| |**Indian Railways**| |
 | | | | |Achieved Rating|Max. Rating|Achieved Rating|Max. Rating|
 |1|Housekeeping Service|Washroom|Water available|1|1|1|1|
 | | | |Soap available|1|1|0|1|

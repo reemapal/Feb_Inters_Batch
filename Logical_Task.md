@@ -5,8 +5,10 @@ I Have Prepared a Excel Sheet in MarkDown in Table!
 # What is Markdown
 Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML)
 
+# What is Markup
+Markup is just a way of providing functionality above plain text. For example: formatting, links, images, bold, italic, bullets, ordered and un-ordered sub-list etc.
 
-# Good Services and Bad Services
+# Good & Bad Services Table in MarkDown Format
 
 | | | | | | | | |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -43,10 +45,39 @@ Markdown allows you to write using an easy-to-read, easy-to-write plain text for
 | |**Total**| | |**3**|**4**|**2**|**4**|
 | | | | |**18**|**20**|**6**|**20**|
 
- Below 10 rating Bad Service, 
- Above 10 rating Good Service, 
- Above 15 rating Very Good Service, 
- Above 20 rating execellent Service, 
+|Remark                            |
+|----------------------------------|
+|Below 10 rating Bad Service       |
+|Above 10 rating Good Service      |
+|Above 15 rating Very Good Service |
+|Above 20 rating execellent Service|
+
+**Good Service Total Rating**
+| | | | 
+|:-:|:-:|:-:|
+|**Service**|**Rating**| **Star Rating** |
+| Housekeeping Service | 4 | ★★★★ |
+| Follow Covid Protocol| 4 | ★★★★ |
+| Catering Service     | 4 | ★★★★ |
+| Staff                | 3 | ★★★ |
+| Safety & Security    | 3 | ★★★ |
+| Total                |18 | Good | 
+
+**Bad Service Total Rating**
+| | | | 
+|:-:|:-:|:-:|
+|**Service**|**Rating**| **Star Rating** |
+| Housekeeping Service | 1 | ★★★★ |
+| Follow Covid Protocol| 1 | ★★★★ |
+| Catering Service     | 1 | ★★★★ |
+| Staff                | 1 | ★★★ |
+| Safety & Security    | 2 | ★★★ |
+| Total                |6  | Poor |
+
+
+
+
+
 
 # Hope you like it!
 

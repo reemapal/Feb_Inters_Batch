@@ -1,6 +1,6 @@
 # Hi, I'm Reema Pal!
 
-I Have Prepared a Excel Sheet in MarkDown in Table!
+I Have Prepared a Excel Sheet in MarkDown Table!
 
 [Good and Bad Services](https://github.com/reemapal/Feb_Inters_Batch/blob/master/Logical_Task.md)
 

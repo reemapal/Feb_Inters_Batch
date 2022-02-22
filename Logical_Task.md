@@ -18,12 +18,12 @@
 | |**Total**| | |**4**|**4**|**1**|**4**|
 | | | | | | | | |
 |**3**|**Catering Service**|Food & Beverages|Good Quality of Food|1|1|0|1|
-| | |Delivery|Delivery of Food to Customer on Time|1|1|0|1|
+| | |Delivery| Delivery of Food to Customer on Time|1|1|0|1|
 | | |Order Food|Online available|0|1|1|1|
 | | |Fresh & Clean|Food is Fresh and Clean|1|1|0|1|
 | |**Total**| | |**3**|**4**|**1**|**4**|
 | | | | | | | | |
-|**4**|**Staff with Cusotmer**|Communication |Polite|1|1|0|1|
+|**4**|**Staff with Customer**|Communication |Polite|1|1|0|1|
 | | ||Friendliness|1|1|0|1|
 | | ||Listen Carefully|1 |1 |0 |1 |
 | | |Assistance|Staff Support Service|1|1|1|1|
@@ -41,16 +41,16 @@
 |Below 10 rating Bad Service       |
 |Above 10 rating Good Service      |
 |Above 15 rating Very Good Service |
-|Above 20 rating execellent Service|
+|Above 20 rating excellent Service|
 
-**Good Service Total Rating**
+**Good Service Total Rating!**
 | | | | 
 |:-:|:-:|:-:|
 |**Service**|**Rating**| **Star Rating** |
 | Housekeeping Service | 4 | ★★★★ |
 | Follow Covid Protocol| 4 | ★★★★ |
 | Catering Service     | 3 | ★★★ |
-| Staff with Cusotmer  | 4 | ★★★★ |
+| Staff with Customer  | 4 | ★★★★ |
 | Safety & Security    | 3 | ★★★ |
 | Total                |18 | Good | 
 
@@ -61,7 +61,7 @@
 | Housekeeping Service | 1 | ★ |
 | Follow Covid Protocol| 1 | ★ |
 | Catering Service     | 1 | ★ |
-| Staff with Cusotmer  | 1 | ★ |
+| Staff with Customer  | 1 | ★ |
 | Safety & Security    | 2 | ★★ |
 | Total                | 6 | Poor |
 

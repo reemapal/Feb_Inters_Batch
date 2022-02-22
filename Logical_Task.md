@@ -49,8 +49,8 @@
 |**Service**|**Rating**| **Star Rating** |
 | Housekeeping Service | 4 | ★★★★ |
 | Follow Covid Protocol| 4 | ★★★★ |
-| Catering Service     | 3 | ★★★★ |
-| Staff with Cusotmer  | 4 | ★★★ |
+| Catering Service     | 3 | ★★★ |
+| Staff with Cusotmer  | 4 | ★★★★ |
 | Safety & Security    | 3 | ★★★ |
 | Total                |18 | Good | 
 

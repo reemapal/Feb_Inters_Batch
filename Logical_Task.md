@@ -58,11 +58,11 @@
 | | | | 
 |:-:|:-:|:-:|
 |**Service**|**Rating**| **Star Rating** |
-| Housekeeping Service | 1 | ★★★★ |
-| Follow Covid Protocol| 1 | ★★★★ |
-| Catering Service     | 1 | ★★★★ |
-| Staff                | 1 | ★★★ |
-| Safety & Security    | 2 | ★★★ |
+| Housekeeping Service | 1 | ★ |
+| Follow Covid Protocol| 1 | ★ |
+| Catering Service     | 1 | ★ |
+| Staff                | 1 | ★ |
+| Safety & Security    | 2 | ★★ |
 | Total                |6  | Poor |
 
 

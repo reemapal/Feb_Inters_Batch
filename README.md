@@ -2,6 +2,8 @@
 
 I Have Prepared a Excel Sheet in MarkDown in Table!
 
+[Good and Bad Services](https://github.com/reemapal/Feb_Inters_Batch/blob/master/Logical_Task.md)
+
 # What is Markdown
 Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML)
 

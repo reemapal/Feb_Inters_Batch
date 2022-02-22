@@ -1,9 +1,9 @@
 
-# Good & Bad Services Table in MarkDown Format
+# Good & Bad Services Table in Markdown Format
 
 | | | | | | | | |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|**SNO.**|**Attributes**|**Sub-attributes**|**Unit-Test**|**Hospital**| |**Indian Railways**| |
+|**S/N**|**Attributes**|**Sub-attributes**|**Unit-Test**|**Hospital**| |**Indian Railways**| |
 | | | | |Achieved Rating|Max. Rating|Achieved Rating|Max. Rating|
 |**1**|**Housekeeping Service**|Washroom|Water available|1|1|1|1|
 | | | |Soap available|1|1|0|1|

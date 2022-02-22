@@ -43,6 +43,11 @@ Markdown allows you to write using an easy-to-read, easy-to-write plain text for
 | |Total| | |3|4|2|4|
 | | | | |18|20|6|20|
 
+# Below 10 rating Bad Service
+# Above 10 rating Good Service
+# Above 15 rating Very Good Service
+# Above 20 rating execellent Service
+
 # Hope you like it!
 
 

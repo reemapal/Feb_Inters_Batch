@@ -39,9 +39,9 @@
 |Remark                            |
 |----------------------------------|
 |Below 10 rating Bad Service       |
-|Above 10 rating Good Service      |
+|Between 10-15 rating Good Service |
 |Above 15 rating Very Good Service |
-|Above 20 rating excellent Service|
+|20/20 rating excellent Service    |
 
 **Good Service Total Rating!**
 | | | | 

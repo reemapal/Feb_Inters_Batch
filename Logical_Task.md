@@ -41,7 +41,7 @@
 |Below 10 rating Bad Service       |
 |Between 10-15 rating Good Service |
 |Above 15 rating Very Good Service |
-|20/20 rating excellent Service    |
+|Full rating excellent Service    |
 
 **Good Service Total Rating!**
 | | | | 

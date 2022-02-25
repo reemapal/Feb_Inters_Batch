@@ -145,23 +145,10 @@ root@70aa56d4e558:/# mysql -u root -p
 
 Enter password: 
 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 4
-Server version: 5.7.37 MySQL Community Server (GPL)
-
-Copyright (c) 2000, 2022, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
 mysql> use intern_batch
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
 
 Database changed
+
 mysql> show tables;
 
 | Tables_in_intern_batch |
@@ -172,14 +159,14 @@ mysql> show tables;
 
 mysql> select * from Logical_Task;
 
-+-----+------------------------+---------------------+----------------------+-------------+--------------+-----------------+-----------------+-----------+-----------+--------------+
+
 | SNo | Attributes             | Sub_Attributes      | Test_Cases           | Abdul_Basit | Amar_Singh   | Desh_Deepak_Pal | Prachi_Upadhyay | Reema     | Aditya    | Madhu        |
-+-----+------------------------+---------------------+----------------------+-------------+--------------+-----------------+-----------------+-----------+-----------+--------------+
+|-----|------------------------|---------------------|----------------------|-------------|--------------|----------------|-----------------|-----------|----------|--------------|
 |   0 |                        |                     |                      |             |              |                 |                    |        |           | 
 |   1 | Performance Evaluation | Sheet Review        | Attributes           | Good        | Satisfactory | Fair            | Good      |     | Very Good | Very Good | Very Good
 |   2 | Delivery               | Submit Task on Time | Basis of Commitment  | Good        | Excellent    | Excellent       | Excelle   |     | Excellent | Good      | Excellent
 |   3 | Efforts                | Quality             | Good Quality of Work | Good        | Good         | Good            | Excelle        || Very Good | Fair      | Good
 |   4 | Assesment              | Feedback            |                      | Good        | Good         | Good            | Very Go   |     | Very Good | Very Good | Very Good
 |   6 | Average Rating         |                     |                      | 2.916666667 | 3.083333333  | 3               | 3.58333 |33     | 4.25      | 3         | 3.583333333
-+-----+------------------------+---------------------+----------------------+-------------+--------------+-----------------+-----------------+-----------+-----------+--------------+
+
 6 rows in set (0.00 sec)

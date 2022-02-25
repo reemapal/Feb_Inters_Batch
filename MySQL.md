@@ -160,7 +160,7 @@ mysql> show tables;
 mysql> select * from Logical_Task;
 
 
-| SNo | Attributes             | Sub_Attributes      | Test_Cases           | Abdul_Basit | Amar_Singh   | Desh_Deepak_Pal | Prachi_Upadhyay | Reema     | Aditya    | Madhu        |
+| SNo | Attributes             | Sub_Attributes      | Test_Cases           | Abdul_Basit | Amar_Singh   | Desh_Deepak_Pal | Prachi_Upadhyay | Aditya     | Reema    | Madhu        |
 |-----|------------------------|---------------------|----------------------|-------------|--------------|----------------|-----------------|-----------|----------|--------------|
 |   0 |                        |                     |                      |             |              |                 |                    |        |           | 
 |   1 | Performance Evaluation | Sheet Review        | Attributes           | Good        | Satisfactory | Fair            | Good      |     | Very Good | Very Good | Very Good

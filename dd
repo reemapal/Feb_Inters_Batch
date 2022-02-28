@@ -1,0 +1,1411 @@
+root@70aa56d4e558:/# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.37 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+
+mysql> use intern_batch;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+
+
+mysql> create table interns ( intern_id INT NOT NULL AUTO_INCREMENT, intern_name VARCHAR(100) NOT NULL, PRIMARY KEY ( intern_id ) );
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> create table attribute (atb_id INT NOT NULL AUTO_INCREMENT, atb_desc VARCHAR(100) NOT NULL, PRIMARY KEY (atb_id ) );
+Query OK, 0 rows affected (0.43 sec)
+
+mysql> create table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY (sub_id ) );
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> create table test_cases (test_id INT NOT NULL AUTO_INCREMENT, tc_desc VARCHAR(100) NOT NULL, PRIMARY KEY (test_id ) );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SHOW TABLES;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| Task                   |
+| attribute              |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> DESCRIBE test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc interns;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| intern_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| intern_name | varchar(100) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+
+
+mysql> insert into interns (intern_id, intern_name) values (1, 'Abdul Basit'), (2, 'Amar Singh'), (3, 'Prachi Upadhyay'), (4, 'Desh Deepak Pal'),(5, 'Reema'), (6, 'Aditya') ;
+Query OK, 7 rows affected (0.00 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from interns;
++-----------+-----------------+
+| intern_id | intern_name     |
++-----------+-----------------+
+|         1 | Abdul Basit     |
+|         2 | Amar Singh      |
+|         3 | Prachi Upadhyay |
+|         4 | Desh Deepak Pal |
+|         5 | Reema           |
+|         6 | Aditya          |
++-----------+-----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from attribute;
+Empty set (0.04 sec)
+
+mysql> desc attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| atb_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| atb_desc | varchar(100) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into attribute (atb_id, atb_desc) values (1, 'Performance Evaluation'), (2, 'Delivery'), (3, 'Efforts'), (4, 'Assesmen
+t'), (5, 'Average Rating');
+Query OK, 5 rows affected (0.07 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| atb_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| atb_desc | varchar(100) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from attribute;
++--------+------------------------+
+| atb_id | atb_desc               |
++--------+------------------------+
+|      1 | Performance Evaluation |
+|      2 | Delivery               |
+|      3 | Efforts                |
+|      4 | Assesment              |
+|      5 | Average Rating         |
++--------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> #create table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, atb_id INT NOT NULL AUTO_INCREMENT,  sub_desc VARCHAR(100) N
+OT NULL, PRIMARY 
+mysql> create table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, atb_id INT NOT NULL AUTO_INCREMENT,  sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY (sub_id, atb_id ) );
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> create table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, atb_id INT NOT NULL AUTO_INCREMENT,  sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY (sub_id) );
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> create table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, atb_id ,  sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY ( sub_id ) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '  sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY ( sub_id ) )' at line 1
+mysql> create table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, atb_id, sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY ( sub_id
+) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY ( sub_id ) )' at line 1
+mysql> creata table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, atb_id,  sub_desc VARCHAR(100) NOT NULL, PRIMARY KEY (sub_id
+) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'creata table sub_attribute (sub_id INT NOT NULL AUTO_INCREMENT, atb_id,  sub_des' at line 1
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| Task                   |
+| attribute              |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.08 sec)
+
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> Alter table sub_attribute (atb_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(atb_id)' at line 1
+mysql> Alter ADD table sub_attribute (atb_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD table sub_attribute (atb_id)' at line 1
+mysql> ALTER TABLE table_name
+    -> ADD column_name datatype;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datatype' at line 2
+mysql> ALTER TABLE sub_attribute ADD atb_id ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> ALTER TABLE sub_attribute ADD atb_id INT NOT NULL AUTO_INCREMENT;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> ALTER TABLE sub_attribute ADD atb_id INT NOT NULL ;
+Query OK, 0 rows affected (0.42 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
+| atb_id   | int(11)      | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into sub_attribute (sub_id, sub_desc, atb_id) values (1, 'Sheet Review'), (2, 'Delivery'), (3, 'Efforts'), (4, 'Aditya
+');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> 
+mysql> insert into sub_attribute (sub_id, sub_desc, atb_id) values (1, 'Sheet Review', 1), (2, 'MarkDown Table Format'), (3, 'Effort
+s'), (4, 'Aditya');
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> 
+mysql> insert into sub_attribute (sub_id, sub_desc, atb_id) values (1, 'Sheet Review', 1), (2, 'MarkDown Table Format', 1), (3, 'Check Mistakes'), (4, 'Aditya');
+ERROR 1136 (21S01): Column count doesn't match value count at row 3
+mysql> insert into sub_attribute (sub_id, sub_desc, atb_id) values (1, 'Sheet Review', 1), (2, 'MarkDown Table Format', 1), (3, 'Check Mistakes', 1), (4, 'Submit Task on Time', 2), (5, 'Quality Assurance activities');
+ERROR 1136 (21S01): Column count doesn't match value count at row 5
+mysql> 
+mysql> insert into sub_attribute (sub_id, sub_desc, atb_id) values (1, 'Sheet Review', 1), (2, 'MarkDown Table Format', 1), (3, 'Check Mistakes', 1), (4, 'Submit Task on Time', 2), (5, 'Quality Assurance activities', 3);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> insert into sub_attribute (sub_id, sub_desc, atb_id) values (1, 'Sheet Review', 1), (2, 'MarkDown Table Format', 1), (3, 'Check Mistakes', 1), (4, 'Submit Task on Time', 2), (5, 'Quality Assurance activities', 3), (6, 'Feedback', 4);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> truncate table sub_attribute;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> insert into sub_attribute (sub_id, sub_desc, atb_id) values (1, 'Sheet Review', 1), (2, 'MarkDown Table Format', 1), (3, 'Check Mistakes', 1), (4, 'Submit Task on Time', 2), (5, 'Quality Assurance activities', 3), (6, 'Feedback', 4);
+Query OK, 6 rows affected (0.11 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
+| atb_id   | int(11)      | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from sub_attribute;
++--------+------------------------------+--------+
+| sub_id | sub_desc                     | atb_id |
++--------+------------------------------+--------+
+|      1 | Sheet Review                 |      1 |
+|      2 | MarkDown Table Format        |      1 |
+|      3 | Check Mistakes               |      1 |
+|      4 | Submit Task on Time          |      2 |
+|      5 | Quality Assurance activities |      3 |
+|      6 | Feedback                     |      4 |
++--------+------------------------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> #insert into test_cases (sub_id, sub_desc, atb_id) values (1, 'Sheet Review', 1), (2, 'MarkDown Table Format', 1), (3, 'Check
+ Mistakes', 1), (4, 'Submit Task on Time', 2), (5, 'Quality Assurance activities', 3), (6, 'Feedback', 4);
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| Task                   |
+| attribute              |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> #insert into test_cases (test_id, tc_desc) values (1, 'Attributes'), (2, 'Sub Attributes'), (3, 'Test Cases', 1), (4, 'Use Alignment'), (5, 'Use Bold '), (6, 'Use Header '), (7, ''), (2, 'Sub Attributes'), (3, 'Test Cases', 1), (4, 'Use Alignment'), (5, 'Use Bold '), (6, 'Use Header ') ;
+mysql> #Alter ADD table test_cases (sub_id);
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
+| atb_id   | int(11)      | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> Alter ADD table test_cases (sub_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD table test_cases (sub_id)' at line 1
+mysql> Alter ADD table test_cases (sub_id) int Not Null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD table test_cases (sub_id) int Not Null' at line 1
+mysql> Alter ADD table test_cases (sub_id) INT NOT NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD table test_cases (sub_id) INT NOT NULL' at line 1
+mysql> #Alter ADD table test_cases (sub_id) INT NOT NULL ;
+mysql> ALTER TABLE sub_attribute ADD atb_id INT NOT NULL ;
+ERROR 1060 (42S21): Duplicate column name 'atb_id'
+mysql> ALTER TABLE sub_attribute ADD sub_id INT NOT NULL ;
+ERROR 1060 (42S21): Duplicate column name 'sub_id'
+mysql> ALTER TABLE test_cases ADD sub_id INT NOT NULL ;
+Query OK, 0 rows affected (0.81 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
+| atb_id   | int(11)      | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> #create table remark (int_id INT, test_id VARCHAR(100) NOT NULL, MarkRate VARCHAR(100) );
+mysql> create table remark (int_id INT, test_id VARCHAR(100) NOT NULL, MarkRate VARCHAR(100) );
+Query OK, 0 rows affected (2.42 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| Task                   |
+| attribute              |
+| interns                |
+| remark                 |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+7 rows in set (0.24 sec)
+
+mysql> desc interns;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| intern_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| intern_name | varchar(100) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.03 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| Task                   |
+| attribute              |
+| interns                |
+| remark                 |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+7 rows in set (0.00 sec)
+
+mysql> desc attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| atb_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| atb_desc | varchar(100) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc interns;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| intern_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| intern_name | varchar(100) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc remark;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| int_id   | int(11)      | YES  |     | NULL    |       |
+| test_id  | varchar(100) | NO   |     | NULL    |       |
+| MarkRate | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
+| atb_id   | int(11)      | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
+| sub_id  | int(11)      | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from test_cases;
+Empty set (0.04 sec)
+
+mysql> #insert into test_cases (test_id, tc_desc, sub_id) values (1, '', 1), (2, 'MarkDown Table Format', 1), (3, 'Check Mistakes',
+1), (4, 'Submit Task on Time', 2), (5, 'Quality Assurance activities', 3), (6, 'Feedback', 4);
+mysql> select * from test_cases;
+Empty set (0.00 sec)
+
+mysql> insert into test_cases (test_id, tc_desc, sub_id) values (1, 'Attributes' 1), (2, 'Sub Attributes', 1), (3, 'Test Cases', 1),
+ (4, 'Use Alignment', 1), (5, 'Use Bold ', 1), (6, 'Use Header ', 1), (7, 'Spells Mistake', 1), (8, 'Grammatical Mistake', 1), (9, 'Basis of Commitment, 2), (10, 'Good Quality of Work', 3), (11, 'Give Input', 3), (12, 'Accurateness', 3) ;
+    '> ^C
+mysql> #insert into test_cases (test_id, tc_desc, sub_id) values (1, 'Attributes' 1), (2, 'Sub Attributes', 1), (3, 'Test Cases', 1), (4, 'Use Alignment', 1), (5, 'Use Bold ', 1), (6, 'Use Header ', 1), (7, 'Spells Mistake', 1), (8, 'Grammatical Mistake', 1), (9,
+'Basis of Commitment, 2), (10, 'Good Quality of Work', 3), (11, 'Give Input', 3), (12, 'Accurateness', 3);
+mysql> select * from sub_attribute;
++--------+------------------------------+--------+
+| sub_id | sub_desc                     | atb_id |
++--------+------------------------------+--------+
+|      1 | Sheet Review                 |      1 |
+|      2 | MarkDown Table Format        |      1 |
+|      3 | Check Mistakes               |      1 |
+|      4 | Submit Task on Time          |      2 |
+|      5 | Quality Assurance activities |      3 |
+|      6 | Feedback                     |      4 |
++--------+------------------------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> insert into test_cases (test_id, tc_desc, sub_id) values (1, 'Attributes' 1), (2, 'Sub Attributes', 1), (3, 'Test Cases', 1), (4, 'Use Alignment', 2), (5, 'Use Bold ', 2), (6, 'Use Header ', 2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake', 3), (9, 'Basis of Commitment, 4), (10, 'Good Quality of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null', 6);
+    '> ^C
+mysql> insert into test_cases (test_id, tc_desc, sub_id) values (1, 'Attributes' 1), (2, 'Sub Attributes', 1), (3, 'Test Cases', 1), (4, 'Use Alignment', 2), (5, 'Use Bold ', 2), (6, 'Use Header ', 2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake', 3), (9, 'Basis of Commitment, 4), (10, 'Good Quality of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null', 6);
+    '> 
+    '> ^C
+mysql> insert into test_cases (test_id, tc_desc, sub_id) values (1, 'Attributes'  1), (2, 'Sub Attributes', 1), (3, 'Test Cases',  1), (4, 'Use Alignment',  2), (5, 'Use Bold ', 2), (6, 'Use Header ',  2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake',  3),
+(9, 'Basis of Commitment',  4), (10, 'Good Quality of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null', 6);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1), (2, 'Sub Attributes', 1), (3, 'Test Cases',  1), (4, 'Use Alignment',  2), (' at line 1
+mysql> insert into test_cases (test_id, tc_desc, sub_id) values (1, 'Attributes'  1), (2, 'Sub Attributes', 1), (3, 'Test Cases',  1), (4, 'Use Alignment',  2), (5, 'Use Bold ', 2), (6, 'Use Header ',  2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake',  3),
+(9, 'Basis of Commitment',  4), (10, 'Good Quality of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null',  6);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1), (2, 'Sub Attributes', 1), (3, 'Test Cases',  1), (4, 'Use Alignment',  2), (' at line 1
+mysql> insert into test_cases (test_id, tc_desc, sub_id) values ( 1, 'Attributes'  1), (2, 'Sub Attributes', 1), (3, 'Test Cases',
+1), (4, 'Use Alignment',  2), (5, 'Use Bold ', 2), (6, 'Use Header ',  2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake',  3),
+ (9, 'Basis of Commitment',  4), (10, 'Good Quality of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null',  6);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1), (2, 'Sub Attributes', 1), (3, 'Test Cases',  1), (4, 'Use Alignment',  2), (' at line 1
+mysql> desc test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
+| sub_id  | int(11)      | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into test_cases (test_id, tc_desc, sub_id) values (1, 'Attributes',  1), (2, 'Sub Attributes', 1), (3, 'Test Cases',
+1), (4, 'Use Alignment',  2), (5, 'Use Bold ', 2), (6, 'Use Header ',  2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake',  3),
+ (9, 'Basis of Commitment',  4), (10, 'Good Quality of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null',  6);
+Query OK, 13 rows affected (0.11 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> select * from test_cases;
++---------+----------------------+--------+
+| test_id | tc_desc              | sub_id |
++---------+----------------------+--------+
+|       1 | Attributes           |      1 |
+|       2 | Sub Attributes       |      1 |
+|       3 | Test Cases           |      1 |
+|       4 | Use Alignment        |      2 |
+|       5 | Use Bold             |      2 |
+|       6 | Use Header           |      2 |
+|       7 | Spells Mistake       |      3 |
+|       8 | Grammatical Mistake  |      3 |
+|       9 | Basis of Commitment  |      4 |
+|      10 | Good Quality of Work |      5 |
+|      11 | Give Input           |      5 |
+|      12 | Accurateness         |      5 |
+|      13 | Null                 |      6 |
++---------+----------------------+--------+
+13 rows in set (0.00 sec)
+
+mysql> desc remark;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| int_id   | int(11)      | YES  |     | NULL    |       |
+| test_id  | varchar(100) | NO   |     | NULL    |       |
+| MarkRate | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table intern_score (test_id INT, remark VARCHAR(100) );
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> desc intern_score;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| test_id | int(11)      | YES  |     | NULL    |       |
+| remark  | varchar(100) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+2 rows in set (0.02 sec)
+
+mysql> drop table intern_remark;
+ERROR 1051 (42S02): Unknown table 'intern_batch.intern_remark'
+mysql> drop table intern_score;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> drop table remark;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> 
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| Task                   |
+| attribute              |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.13 sec)
+
+mysql> drop table Task;
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> 
+
+
+
+
+
+
+
+
+
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| attribute              |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+mysql> select * from test_cases;
++---------+----------------------+--------+
+| test_id | tc_desc              | sub_id |
++---------+----------------------+--------+
+|       1 | Attributes           |      1 |
+|       2 | Sub Attributes       |      1 |
+|       3 | Test Cases           |      1 |
+|       4 | Use Alignment        |      2 |
+|       5 | Use Bold             |      2 |
+|       6 | Use Header           |      2 |
+|       7 | Spells Mistake       |      3 |
+|       8 | Grammatical Mistake  |      3 |
+|       9 | Basis of Commitment  |      4 |
+|      10 | Good Quality of Work |      5 |
+|      11 | Give Input           |      5 |
+|      12 | Accurateness         |      5 |
+|      13 | Null                 |      6 |
++---------+----------------------+--------+
+13 rows in set (0.02 sec)
+
+mysql> 
+mysql> ALTER TABLE Orders
+    -> ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+ERROR 1146 (42S02): Table 'intern_batch.Orders' doesn't exist
+mysql> create table intern_score (mark_id INT, remark VARCHAR, intern_name INT, test_id, FOREIGN KEY (test_id) REFERENCES testcases(test_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' intern_name INT, test_id, FOREIGN KEY (test_id) REFERENCES testcases(test_id))' at line 1
+mysql> create table intern_score (mark_id INT NOT NULL, remark VARCHAR (100), intern_name VARCHAR (100), test_id INT NOT NULL, FOREI
+GN KEY (test_id) REFERENCES testcases(test_id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table intern_score (mark_id INT NOT NULL, remark VARCHAR (100), intern_name VARCHAR (100), test_id INT NOT NULL, FOREIGN KEY (test_id) REFERENCES test_cases(test_id));
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> desc intern_remark;
+ERROR 1146 (42S02): Table 'intern_batch.intern_remark' doesn't exist
+mysql> desc intern_score;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| mark_id     | int(11)      | NO   |     | NULL    |       |
+| remark      | varchar(100) | YES  |     | NULL    |       |
+| intern_name | varchar(100) | YES  |     | NULL    |       |
+| test_id     | int(11)      | NO   | MUL | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> #insert into test_cases (test_id, tc_desc, sub_id) values ( 1, 'Attributes'  1), (2, 'Sub Attributes', 1), (3, 'Test Cases',
+ 1), (4, 'Use Alignment',  2), (5, 'Use Bold ', 2), (6, 'Use Header ',  2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake',  3), (9, 'Basis of Commitment',  4), (10, 'Good Quality of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null',  6);
+
+mysql> create table intern_marks (intern_id INT NOT NULL, test^Cemark VARCHAR (100), intern_name VARCHAR (100), test_id INT NOT NULL
+mysql> GN KEY (test_id) REFERENCES testcases(t
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| attribute              |
+| intern_score           |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from test
+    -> _Cases^C
+mysql> desc tables;
+ERROR 1146 (42S02): Table 'intern_batch.tables' doesn't exist
+mysql> desc intern_score;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| mark_id     | int(11)      | NO   |     | NULL    |       |
+| remark      | varchar(100) | YES  |     | NULL    |       |
+| intern_name | varchar(100) | YES  |     | NULL    |       |
+| test_id     | int(11)      | NO   | MUL | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| attribute              |
+| intern_score           |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.10 sec)
+
+mysql> select * from attribute;
++--------+------------------------+
+| atb_id | atb_desc               |
++--------+------------------------+
+|      1 | Performance Evaluation |
+|      2 | Delivery               |
+|      3 | Efforts                |
+|      4 | Assesment              |
+|      5 | Average Rating         |
++--------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from sub_attribute;
++--------+------------------------------+--------+
+| sub_id | sub_desc                     | atb_id |
++--------+------------------------------+--------+
+|      1 | Sheet Review                 |      1 |
+|      2 | MarkDown Table Format        |      1 |
+|      3 | Check Mistakes               |      1 |
+|      4 | Submit Task on Time          |      2 |
+|      5 | Quality Assurance activities |      3 |
+|      6 | Feedback                     |      4 |
++--------+------------------------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from test_cases;
++---------+----------------------+--------+
+| test_id | tc_desc              | sub_id |
++---------+----------------------+--------+
+|       1 | Attributes           |      1 |
+|       2 | Sub Attributes       |      1 |
+|       3 | Test Cases           |      1 |
+|       4 | Use Alignment        |      2 |
+|       5 | Use Bold             |      2 |
+|       6 | Use Header           |      2 |
+|       7 | Spells Mistake       |      3 |
+|       8 | Grammatical Mistake  |      3 |
+|       9 | Basis of Commitment  |      4 |
+|      10 | Good Quality of Work |      5 |
+|      11 | Give Input           |      5 |
+|      12 | Accurateness         |      5 |
+|      13 | Null                 |      6 |
++---------+----------------------+--------+
+13 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| attribute              |
+| intern_score           |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| atb_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| atb_desc | varchar(100) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
+| atb_id   | int(11)      | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> #insert into test_cases (test_id, tc_desc, sub_id) values ( 1, 'Attributes'  1), (2, 'Sub Attributes', 1), (3, 'Test Cases',
+ 1), (4, 'Use Alignment',  2), (5, 'Use Bold ', 2), (6, 'Use Header ',  2), (7, 'Spells Mistake', 3), (8, 'Grammatical Mistake',  3), (9, 'Basis of Commitment',  4), (10, 'Good Qu[B^City of Work', 5), (11, 'Give Input', 5), (12, 'Accurateness', 5), (13, 'Null',  6mysql> 
+mysql> 
+mysql> [CALTER TABLE sub_attribute ADD FOREIGN KEY (atb_id) REFERENCES attribute(atb_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[CALTER TABLE sub_attribute ADD FOREIGN KEY (atb_id) REFERENCES attribute(atb_id' at line 1
+mysql> ALTER TABLE sub_attribute ADD FOREIGN KEY (atb_id) REFERENCES attribute(atb_id);
+Query OK, 6 rows affected (0.71 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc sub_atrribute;
+ERROR 1146 (42S02): Table 'intern_batch.sub_atrribute' doesn't exist
+mysql> desc sub_attribute;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| sub_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| sub_desc | varchar(100) | NO   |     | NULL    |                |
+| atb_id   | int(11)      | NO   | MUL | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.15 sec)
+
+mysql> desc test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
+| sub_id  | int(11)      | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE test_cases ADD FOREIGN KEY (sub_id) REFERENCES sub_attribute(sub_id);
+Query OK, 13 rows affected (0.42 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> desc test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
+| sub_id  | int(11)      | NO   | MUL | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| attribute              |
+| intern_score           |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc inter_score
+    -> ^C
+mysql> desc inter_score;
+ERROR 1146 (42S02): Table 'intern_batch.inter_score' doesn't exist
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| attribute              |
+| intern_score           |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc inter_score;
+ERROR 1146 (42S02): Table 'intern_batch.inter_score' doesn't exist
+mysql> create table intern_score (mark_id int NOT NULL auto_increment primary key ,intern_id int foreign key(intern_id) refrences interns(intern_id) ,test_id int foreign key(test_id) refrences test_cases(test_id), remark VARCHAR(100) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(intern_id) refrences interns(intern_id) ,test_id int foreign key(tes' at line 1
+mysql> create table intern_score (mark_id int NOT NULL auto_increment primary key ,intern_id int, foreign key(intern_id) refrences interns(intern_id) ,test_id int, foreign key(test_id) refrences test_cases(test_id), remark VARCHAR(100) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'refrences interns(intern_id) ,test_id int, foreign key(test_id) refrences test_c' at line 1
+mysql> create table intern_score (mark_id int NOT NULL auto_increment primary key ,intern_id int, foreign key(intern_id) references
+interns(intern_id) ,test_id int, foreign key(test_id) references test_cases(test_id), remark VARCHAR(100) );
+ERROR 1050 (42S01): Table 'intern_score' already exists
+mysql> drop table intern_score;
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> create table intern_score (mark_id int NOT NULL auto_increment primary key ,intern_id int, foreign key(intern_id) references
+interns(intern_id) ,test_id int, foreign key(test_id) references test_cases(test_id), remark VARCHAR(100) );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc intern_score;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| mark_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| intern_id | int(11)      | YES  | MUL | NULL    |                |
+| test_id   | int(11)      | YES  | MUL | NULL    |                |
+| remark    | varchar(100) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.08 sec)
+
+mysql> insert into intern_score (mark_id, intern_id, test_id, remark) values (1,1, 'Good');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into intern_score (mark_id, intern_id, test_id, remark) values (1, 1, 'Good');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into intern_score (intern_id, test_id, remark) values (1, 1, 'Good');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from intern_score;
++---------+-----------+---------+--------+
+| mark_id | intern_id | test_id | remark |
++---------+-----------+---------+--------+
+|       1 |         1 |       1 | Good   |
++---------+-----------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> #insert into intern_score (intern_id, test_id, remark) values (1, 2, '');
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| attribute              |
+| intern_score           |
+| interns                |
+| sub_attribute          |
+| test_cases             |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from intern;
+ERROR 1146 (42S02): Table 'intern_batch.intern' doesn't exist
+mysql> select * from interns;
++-----------+-----------------+
+| intern_id | intern_name     |
++-----------+-----------------+
+|         1 | Abdul Basit     |
+|         2 | Amar Singh      |
+|         3 | Prachi Upadhyay |
+|         4 | Desh Deepak Pal |
+|         5 | Reema           |
+|         6 | Aditya          |
++-----------+-----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from test_cases;
++---------+----------------------+--------+
+| test_id | tc_desc              | sub_id |
++---------+----------------------+--------+
+|       1 | Attributes           |      1 |
+|       2 | Sub Attributes       |      1 |
+|       3 | Test Cases           |      1 |
+|       4 | Use Alignment        |      2 |
+|       5 | Use Bold             |      2 |
+|       6 | Use Header           |      2 |
+|       7 | Spells Mistake       |      3 |
+|       8 | Grammatical Mistake  |      3 |
+|       9 | Basis of Commitment  |      4 |
+|      10 | Good Quality of Work |      5 |
+|      11 | Give Input           |      5 |
+|      12 | Accurateness         |      5 |
+|      13 | Null                 |      6 |
++---------+----------------------+--------+
+13 rows in set (0.13 sec)
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (1, 2, 'Good'), (1, 3, 'Good'), (1, 4, 'Good'), (1, 5, 'Good'),
+(1, 6, 'Good'), (1, 7, 'Satisfactory'), (1, 8, 'Good'), (1, 9, 'Good'), (1, 10, 'Good'), (1, 11, 'Good'), (1, 12, 'Good'), (1, 13, 'Good') ;
+Query OK, 12 rows affected (0.18 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+mysql> select * from intern_score;
++---------+-----------+---------+--------------+
+| mark_id | intern_id | test_id | remark       |
++---------+-----------+---------+--------------+
+|       1 |         1 |       1 | Good         |
+|       2 |         1 |       2 | Good         |
+|       3 |         1 |       3 | Good         |
+|       4 |         1 |       4 | Good         |
+|       5 |         1 |       5 | Good         |
+|       6 |         1 |       6 | Good         |
+|       7 |         1 |       7 | Satisfactory |
+|       8 |         1 |       8 | Good         |
+|       9 |         1 |       9 | Good         |
+|      10 |         1 |      10 | Good         |
+|      11 |         1 |      11 | Good         |
+|      12 |         1 |      12 | Good         |
+|      13 |         1 |      13 | Good         |
++---------+-----------+---------+--------------+
+13 rows in set (0.00 sec)
+
+mysql> #insert into intern_score (intern_id, test_id, remark) values (2, 1, 'Satisfactory'), (2, 2, 'Good'), (2, 3, 'Satisfactory'),
+ (2, 4, 'Good'), (2, 5, 'Good'), (2, 6, 'Satisfactory'), (2, 7, 'Good'), (2, 8, 'Good'), (2, 9, 'Good'), (2, 10, 'Good'), (2, 11, 'Good'), (2, 12, 'Good'), (2, 13, 'Good') ;
+mysql> insert into intern_score (intern_id, test_id, remark) values (2, 1, 'Satisfactory'), (2, 2, 'Good'), (2, 3, 'Satisfactory'),
+(2, 4, 'Excellent'), (2, 5, 'Good'), (2, 6, 'Good'), (2, 7, 'Satisfactory'), (2, 8, 'Good'), (2, 9, 'Excellent'), (2, 10, 'Good'), (
+2, 11, 'Good'), (2, 12, 'Good'), (2, 13, 'Good') ;
+Query OK, 13 rows affected (0.11 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (3, 1, 'Fair'), (3, 2, 'Good'), (3, 3, 'Good'), (3, 4, 'Excellent'), (3, 5, 'Good'), (3, 6, 'Good'), (3, 7, 'Fair'), (3, 8, 'Good'), (3, 9, 'Excellent'), (3, 10, 'Good'), (3, 11, 'Good'), (3, 12,
+'Good'), (3, 13, 'Good') ;
+Query OK, 13 rows affected (0.03 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (4, 1, 'Good'), (4, 2, 'VeryGood'), (4, 3, 'Poor'), (4, 4, 'Excellent'), (4, 5, 'Good'), (4, 6, 'Good'), (4, 7, 'Good'), (4, 8, 'Execellent'), (3, 9, 'Excellent'), (3, 10, 'VeryGood'), (3, 11, 'Good'), (3, 12, 'Good'), (3, 13, 'VeryGood') ;
+Query OK, 13 rows affected (0.07 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (5, 1, 'VeryGood'), (4, 2, 'VeryGood'), (4, 3, 'VeryGood'), (4,
+4, 'Excellent'), (4, 5, 'Execellent'), (4, 6, 'Execellent'), (4, 7, 'VeryGood'), (4, 8, 'VeryGood'), (3, 9, 'Excellent'), (3, 10, 'VeryGood'), (3, 11, 'VeryGood'), (3, 12, 'VeryGood'), (3, 13, 'VeryGood') ;
+Query OK, 13 rows affected (0.03 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (6, 1, 'VeryGood'), (6, 2, 'VeryGood'), (6, 3, 'VeryGood'), (6,
+4, 'VeryGood'), (4, 5, 'Good'), (4, 6, 'Poor'), (4, 7, 'Good'), (4, 8, 'Satisfactory'), (4, 9, 'Good'), (4, 10, 'Fair'), (4, 11, 'VeryGood'), (4, 12, 'VeryGood'), (4, 13, 'VeryGood') ;
+Query OK, 13 rows affected (0.20 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (7, 1, 'VeryGood'), (7, 2, 'VeryGood'), (7, 3, 'Good'), (6, 4, 'Good'), (7, 5, 'Good'), (7, 6, 'Good'), (7, 7, 'Satisfactory'), (7, 8, 'VeryGood'), (7, 9, 'Good'), (7, 10, 'VeryGood'), (7, 11, 'VeryGood'), (7, 12, 'VeryGood'), (7, 13, 'VeryGood') ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`intern_batch`.`intern_score`, CONSTRAINT `intern_score_ibfk_1` FOREIGN KEY (`intern_id`) REFERENCES `interns` (`intern_id`))
+mysql> insert into intern_score (intern_id, test_id, remark) values (7, 1, 'VeryGood'), (7, 2, 'VeryGood'), (7, 3, 'Good'), (7, 4, 'Good'), (7, 5, 'Good'), (7, 6, 'Good'), (7, 7, 'Satisfactory'), (7, 8, 'VeryGood'), (7, 9, 'Good'), (7, 10, 'VeryGood'), (7, 11, 'VeryGood'), (7, 12, 'VeryGood'), (7, 13, 'VeryGood') ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`intern_batch`.`intern_score`, CONSTRAINT `intern_score_ibfk_1` FOREIGN KEY (`intern_id`) REFERENCES `interns` (`intern_id`))
+mysql> insert into intern_score (intern_id, test_id, remark) values (7, 1, 'VeryGood'), (7, 2, 'VeryGood'), (7, 3, 'Good'), (7, 4, 'Good'), (7, 5, 'Good'), (7, 6, 'Good'), (7, 7, 'Satisfactory'), (7, 8, 'VeryGood'), (7, 9, 'Good'), (7, 10, 'VeryGood'), (7, 11, 'VeryGood'), (7, 12, 'VeryGood'), (7, 13, 'VeryGood') ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`intern_batch`.`intern_score`, CONSTRAINT `intern_score_ibfk_1` FOREIGN KEY (`intern_id`) REFERENCES `interns` (`intern_id`))
+mysql> select * from intern_score;
++---------+-----------+---------+--------------+
+| mark_id | intern_id | test_id | remark       |
++---------+-----------+---------+--------------+
+|       1 |         1 |       1 | Good         |
+|       2 |         1 |       2 | Good         |
+|       3 |         1 |       3 | Good         |
+|       4 |         1 |       4 | Good         |
+|       5 |         1 |       5 | Good         |
+|       6 |         1 |       6 | Good         |
+|       7 |         1 |       7 | Satisfactory |
+|       8 |         1 |       8 | Good         |
+|       9 |         1 |       9 | Good         |
+|      10 |         1 |      10 | Good         |
+|      11 |         1 |      11 | Good         |
+|      12 |         1 |      12 | Good         |
+|      13 |         1 |      13 | Good         |
+|      14 |         2 |       1 | Satisfactory |
+|      15 |         2 |       2 | Good         |
+|      16 |         2 |       3 | Satisfactory |
+|      17 |         2 |       4 | Excellent    |
+|      18 |         2 |       5 | Good         |
+|      19 |         2 |       6 | Good         |
+|      20 |         2 |       7 | Satisfactory |
+|      21 |         2 |       8 | Good         |
+|      22 |         2 |       9 | Excellent    |
+|      23 |         2 |      10 | Good         |
+|      24 |         2 |      11 | Good         |
+|      25 |         2 |      12 | Good         |
+|      26 |         2 |      13 | Good         |
+|      27 |         3 |       1 | Fair         |
+|      28 |         3 |       2 | Good         |
+|      29 |         3 |       3 | Good         |
+|      30 |         3 |       4 | Excellent    |
+|      31 |         3 |       5 | Good         |
+|      32 |         3 |       6 | Good         |
+|      33 |         3 |       7 | Fair         |
+|      34 |         3 |       8 | Good         |
+|      35 |         3 |       9 | Excellent    |
+|      36 |         3 |      10 | Good         |
+|      37 |         3 |      11 | Good         |
+|      38 |         3 |      12 | Good         |
+|      39 |         3 |      13 | Good         |
+|      40 |         4 |       1 | Good         |
+|      41 |         4 |       2 | VeryGood     |
+|      42 |         4 |       3 | Poor         |
+|      43 |         4 |       4 | Excellent    |
+|      44 |         4 |       5 | Good         |
+|      45 |         4 |       6 | Good         |
+|      46 |         4 |       7 | Good         |
+|      47 |         4 |       8 | Execellent   |
+|      48 |         3 |       9 | Excellent    |
+|      49 |         3 |      10 | VeryGood     |
+|      50 |         3 |      11 | Good         |
+|      51 |         3 |      12 | Good         |
+|      52 |         3 |      13 | VeryGood     |
+|      53 |         5 |       1 | VeryGood     |
+|      54 |         4 |       2 | VeryGood     |
+|      55 |         4 |       3 | VeryGood     |
+|      56 |         4 |       4 | Excellent    |
+|      57 |         4 |       5 | Execellent   |
+|      58 |         4 |       6 | Execellent   |
+|      59 |         4 |       7 | VeryGood     |
+|      60 |         4 |       8 | VeryGood     |
+|      61 |         3 |       9 | Excellent    |
+|      62 |         3 |      10 | VeryGood     |
+|      63 |         3 |      11 | VeryGood     |
+|      64 |         3 |      12 | VeryGood     |
+|      65 |         3 |      13 | VeryGood     |
+|      66 |         6 |       1 | VeryGood     |
+|      67 |         6 |       2 | VeryGood     |
+|      68 |         6 |       3 | VeryGood     |
+|      69 |         6 |       4 | VeryGood     |
+|      70 |         4 |       5 | Good         |
+|      71 |         4 |       6 | Poor         |
+|      72 |         4 |       7 | Good         |
+|      73 |         4 |       8 | Satisfactory |
+|      74 |         4 |       9 | Good         |
+|      75 |         4 |      10 | Fair         |
+|      76 |         4 |      11 | VeryGood     |
+|      77 |         4 |      12 | VeryGood     |
+|      78 |         4 |      13 | VeryGood     |
++---------+-----------+---------+--------------+
+78 rows in set (0.00 sec)
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (4, 1, 'Good'), (4, 2, 'VeryGood'), (4, 3, 'Poor'), (4, 4, 'Excellent'), (4, 5, 'Good'), (4, 6, 'Good'), (4, 7, 'Good'), (4, 8, 'Execellent'), (4, 9, 'Excellent'), (4, 10, 'VeryGood'), (4, 11, 'Good'), (4, 12, 'Good'), (4, 13, 'VeryGood') ;
+Query OK, 13 rows affected (0.07 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> select * from intern_score;
++---------+-----------+---------+--------------+
+| mark_id | intern_id | test_id | remark       |
++---------+-----------+---------+--------------+
+|       1 |         1 |       1 | Good         |
+|       2 |         1 |       2 | Good         |
+|       3 |         1 |       3 | Good         |
+|       4 |         1 |       4 | Good         |
+|       5 |         1 |       5 | Good         |
+|       6 |         1 |       6 | Good         |
+|       7 |         1 |       7 | Satisfactory |
+|       8 |         1 |       8 | Good         |
+|       9 |         1 |       9 | Good         |
+|      10 |         1 |      10 | Good         |
+|      11 |         1 |      11 | Good         |
+|      12 |         1 |      12 | Good         |
+|      13 |         1 |      13 | Good         |
+|      14 |         2 |       1 | Satisfactory |
+|      15 |         2 |       2 | Good         |
+|      16 |         2 |       3 | Satisfactory |
+|      17 |         2 |       4 | Excellent    |
+|      18 |         2 |       5 | Good         |
+|      19 |         2 |       6 | Good         |
+|      20 |         2 |       7 | Satisfactory |
+|      21 |         2 |       8 | Good         |
+|      22 |         2 |       9 | Excellent    |
+|      23 |         2 |      10 | Good         |
+|      24 |         2 |      11 | Good         |
+|      25 |         2 |      12 | Good         |
+|      26 |         2 |      13 | Good         |
+|      27 |         3 |       1 | Fair         |
+|      28 |         3 |       2 | Good         |
+|      29 |         3 |       3 | Good         |
+|      30 |         3 |       4 | Excellent    |
+|      31 |         3 |       5 | Good         |
+|      32 |         3 |       6 | Good         |
+|      33 |         3 |       7 | Fair         |
+|      34 |         3 |       8 | Good         |
+|      35 |         3 |       9 | Excellent    |
+|      36 |         3 |      10 | Good         |
+|      37 |         3 |      11 | Good         |
+|      38 |         3 |      12 | Good         |
+|      39 |         3 |      13 | Good         |
+|      40 |         4 |       1 | Good         |
+|      41 |         4 |       2 | VeryGood     |
+|      42 |         4 |       3 | Poor         |
+|      43 |         4 |       4 | Excellent    |
+|      44 |         4 |       5 | Good         |
+|      45 |         4 |       6 | Good         |
+|      46 |         4 |       7 | Good         |
+|      47 |         4 |       8 | Execellent   |
+|      48 |         3 |       9 | Excellent    |
+|      49 |         3 |      10 | VeryGood     |
+|      50 |         3 |      11 | Good         |
+|      51 |         3 |      12 | Good         |
+|      52 |         3 |      13 | VeryGood     |
+|      53 |         5 |       1 | VeryGood     |
+|      54 |         4 |       2 | VeryGood     |
+|      55 |         4 |       3 | VeryGood     |
+|      56 |         4 |       4 | Excellent    |
+|      57 |         4 |       5 | Execellent   |
+|      58 |         4 |       6 | Execellent   |
+|      59 |         4 |       7 | VeryGood     |
+|      60 |         4 |       8 | VeryGood     |
+|      61 |         3 |       9 | Excellent    |
+|      62 |         3 |      10 | VeryGood     |
+|      63 |         3 |      11 | VeryGood     |
+|      64 |         3 |      12 | VeryGood     |
+|      65 |         3 |      13 | VeryGood     |
+|      66 |         6 |       1 | VeryGood     |
+|      67 |         6 |       2 | VeryGood     |
+|      68 |         6 |       3 | VeryGood     |
+|      69 |         6 |       4 | VeryGood     |
+|      70 |         4 |       5 | Good         |
+|      71 |         4 |       6 | Poor         |
+|      72 |         4 |       7 | Good         |
+|      73 |         4 |       8 | Satisfactory |
+|      74 |         4 |       9 | Good         |
+|      75 |         4 |      10 | Fair         |
+|      76 |         4 |      11 | VeryGood     |
+|      77 |         4 |      12 | VeryGood     |
+|      78 |         4 |      13 | VeryGood     |
+|     118 |         4 |       1 | Good         |
+|     119 |         4 |       2 | VeryGood     |
+|     120 |         4 |       3 | Poor         |
+|     121 |         4 |       4 | Excellent    |
+|     122 |         4 |       5 | Good         |
+|     123 |         4 |       6 | Good         |
+|     124 |         4 |       7 | Good         |
+|     125 |         4 |       8 | Execellent   |
+|     126 |         4 |       9 | Excellent    |
+|     127 |         4 |      10 | VeryGood     |
+|     128 |         4 |      11 | Good         |
+|     129 |         4 |      12 | Good         |
+|     130 |         4 |      13 | VeryGood     |
++---------+-----------+---------+--------------+
+91 rows in set (0.00 sec)
+
+mysql> #insert into intern_score (intern_id, test_id, remark) values (5, 1, 'VeryGood'), (5, 2, 'VeryGood'), (5, 3, 'VeryGood'), (5,
+ 4, 'Excellent'), (5, 5, 'Execellent'), (5, 6, 'Execellent'), (5, 7, 'VeryGood'), (5, 8, 'VeryGood'), (5, 9, 'Excellent'), (5, 10, 'VeryGood'), (5, 11, 'VeryGood'), (5, 12, 'VeryGood'), (5, 13, 'VeryGood') ;
+mysql> #insert into intern_score (intern_id, test_id, remark) values (4, 1, 'Good'), (4, 2, 'VeryGood'), (4, 3, 'Poor'), (4, 4, 'Excellent'), (4, 5, 'Good'), (4, 6, 'Good'), (4, 7, 'Good'), (4, 8, 'Execellent'), (4, 9, 'Excellent'), (4, 10, 'VeryGood'), (4, 11, 'Good'), (4, 12, 'Good'), (4, 13, 'VeryGood') ;
+mysql> #insert into intern_score (intern_id, test_id, remark) values (7, 1, 'VeryGood'), (7, 2, 'VeryGood'), (7, 3, 'Good'), (7, 4,
+'Good'), (7, 5, 'Good'), (7, 6, 'Good'), (7, 7, 'Satisfactory'), (7, 8, 'VeryGood'), (7, 9, 'Good'), (7, 10, 'VeryGood'), (7, 11, 'VeryGood'), (7, 12, 'VeryGood'), (7, 13, 'VeryGood') ;
+mysql> #insert into intern_score (intern_id, test_id, remark) values (6, 1, 'VeryGood'), (6, 2, 'VeryGood'), (6, 3, 'VeryGood'), (6,
+ 4, 'VeryGood'), (6, 5, 'Good'), (6, 6, 'Poor'), (6, 7, 'Good'), (6, 8, 'Satisfactory'), (6, 9, 'Good'), (6, 10, 'Fair'), (6, 11, 'VeryGood'), (6, 12, 'VeryGood'), (6, 13, 'VeryGood') ;
+mysql> #insert into intern_score (intern_id, test_id, remark) values (3, 1, 'Fair'), (3, 2, 'Good'), (3, 3, 'Good'), (3, 4, 'Excellent'), (3, 5, 'Good'), (3, 6, 'Good'), (3, 7, 'Fair'), (3, 8, 'Good'), (3, 9, 'Excellent'), (3, 10, 'Good'), (3, 11, 'Good'), (3, 12,
+ 'Good'), (3, 13, 'Good') ;
+mysql> #insert into intern_score (intern_id, test_id, remark) values (2, 1, 'Satisfactory'), (2, 2, 'Good'), (2, 3, 'Satisfactory'),
+ (2, 4, 'Excellent'), (2, 5, 'Good'), (2, 6, 'Good'), (2, 7, 'Satisfactory'), (2, 8, 'Good'), (2, 9, 'Excellent'), (2, 10, 'Good'),
+(2, 11, 'Good'), (2, 12, 'Good'), (2, 13, 'Good') ;
+mysql> #insert into intern_score (intern_id, test_id, remark) values (1, 2, 'Good'), (1, 3, 'Good'), (1, 4, 'Good'), (1, 5, 'Good'),
+ (1, 6, 'Good'), (1, 7, 'Satisfactory'), (1, 8, 'Good'), (1, 9, 'Good'), (1, 10, 'Good'), (1, 11, 'Good'), (1, 12, 'Good'), (1, 13,
+'Good') ;
+mysql> truncate table intern_score;
+Query OK, 0 rows affected (0.67 sec)
+
+mysql> select * from intern_score;
+Empty set (0.01 sec)
+
+mysql> insert into intern_score (mark_id, intern_id, test_id, remark) values (1, 1, 'Good');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into intern_score (intern_id, test_id, remark) values (1, 1, 'Good');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (1, 2, 'Good'), (1, 3, 'Good'), (1, 4, 'Good'), (1, 5, 'Good'),
+(1, 6, 'Good'), (1, 7, 'Satisfactory'), (1, 8, 'Good'), (1, 9, 'Good'), (1, 10, 'Good'), (1, 11, 'Good'), (1, 12, 'Good'), (1, 13, 'Good') ;
+Query OK, 12 rows affected (0.10 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (2, 1, 'Satisfactory'), (2, 2, 'Good'), (2, 3, 'Satisfactory'),
+(2, 4, 'Excellent'), (2, 5, 'Good'), (2, 6, 'Good'), (2, 7, 'Satisfactory'), (2, 8, 'Good'), (2, 9, 'Excellent'), (2, 10, 'Good'), (2, 11, 'Good'), (2, 12, 'Good'), (2, 13, 'Good') ;
+Query OK, 13 rows affected (0.10 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (3, 1, 'Fair'), (3, 2, 'Good'), (3, 3, 'Good'), (3, 4, 'Excellent'), (3, 5, 'Good'), (3, 6, 'Good'), (3, 7, 'Fair'), (3, 8, 'Good'), (3, 9, 'Excellent'), (3, 10, 'Good'), (3, 11, 'Good'), (3, 12,
+'Good'), (3, 13, 'Good') ;
+Query OK, 13 rows affected (0.05 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (4, 1, 'Good'), (4, 2, 'VeryGood'), (4, 3, 'Poor'), (4, 4, 'Excellent'), (4, 5, 'Good'), (4, 6, 'Good'), (4, 7, 'Good'), (4, 8, 'Execellent'), (4, 9, 'Excellent'), (4, 10, 'VeryGood'), (4, 11, 'Good     4, 12, 'Good'), (4
+Query OK, 13 rows affected (0.03 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (5, 1, 'VeryGood'), (5, 2, 'VeryGood'), (5, 3, 'VeryGood'), (5,
+4, 'Excellent'), (5, 5, 'Execellent'), (5, 6, 'Execellent'), (5, 7, 'VeryGood'), (5, 8, 'VeryGood'), (5, 9, 'Excellent'), (5, 10, 'VeryGood'), (5, 11, 'VeryGood'), (5, 12, 'VeryGood'), (5, 13, 'VeryGood') ;
+Query OK, 13 rows affected (0.11 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (6, 1, 'VeryGood'), (6, 2, 'VeryGood'), (6, 3, 'VeryGood'), (6,
+4, 'VeryGood'), (6, 5, 'Good'), (6, 6, 'Poor'), (6, 7, 'Good'), (6, 8, 'Satisfactory'), (6, 9, 'Good'), (6, 10, 'Fair'), (6, 11, 'VeryGood'), (6, 12, 'VeryGood'), (6, 13, 'VeryGood') ;
+Query OK, 13 rows affected (0.00 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> insert into intern_score (intern_id, test_id, remark) values (7, 1, 'VeryGood'), (7, 2, 'VeryGood'), (7, 3, 'Good'), (7, 4, 'Good'), (7, 5, 'Good'), (7, 6, 'Good'), (7, 7, 'Satisfactory'), (7, 8, 'VeryGood'), (7, 9, 'Good'), (7, 10, 'VeryGood'), (7, 11, 'VeryGo       7, 12, 'VeryGood'), (7
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`intern_batch`.`intern_score`, CONSTRAINT `intern_score_ibfk_1` FOREIGN KEY (`intern_id`) REFERENCES `interns` (`intern_id`))
+mysql> insert into intern_score (intern_id, test_id, remark) values (7, 1, 'VeryGood'), (7, 2, 'VeryGood'), (7, 3, 'Good'), (7, 4, 'Good'), (7, 5, 'Good'), (7, 6, 'Good'), (7, 7, 'Satisfactory'), (7, 8, 'VeryGood'), (7, 9, 'Good'), (7, 10, 'VeryGood'), (7, 11, 'VeryGood'), (7, 12, 'VeryGood'), (7, 13, 'VeryGood') ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`intern_batch`.`intern_score`, CONSTRAINT `intern_score_ibfk_1` FOREIGN KEY (`intern_id`) REFERENCES `interns` (`intern_id`))
+mysql> desc test_cases;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| test_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tc_desc | varchar(100) | NO   |     | NULL    |                |
+| sub_id  | int(11)      | NO   | MUL | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc intern_score;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| mark_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| intern_id | int(11)      | YES  | MUL | NULL    |                |
+| test_id   | int(11)      | YES  | MUL | NULL    |                |
+| remark    | varchar(100) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+
+
+mysql> select intern_name, remark, tc_desc from interns i inner join intern_score s on i.intern_id = s.intern_id inner join test_cases t on  t.test_id = s.test_id where i.intern_id = 1;
++-------------+--------------+----------------------+
+| intern_name | remark       | tc_desc              |
++-------------+--------------+----------------------+
+| Abdul Basit | Good         | Attributes           |
+| Abdul Basit | Good         | Sub Attributes       |
+| Abdul Basit | Good         | Test Cases           |
+| Abdul Basit | Good         | Use Alignment        |
+| Abdul Basit | Good         | Use Bold             |
+| Abdul Basit | Good         | Use Header           |
+| Abdul Basit | Satisfactory | Spells Mistake       |
+| Abdul Basit | Good         | Grammatical Mistake  |
+| Abdul Basit | Good         | Basis of Commitment  |
+| Abdul Basit | Good         | Good Quality of Work |
+| Abdul Basit | Good         | Give Input           |
+| Abdul Basit | Good         | Accurateness         |
+| Abdul Basit | Good         | blank_space          |
+| Abdul Basit | 2.92         | blank_space          |
++-------------+--------------+----------------------+
+
+
+Table:
+
+Table stores the data in database and contains the data.
+
+Instead of sending the complex query to the database all the time, you can save the query as a view and then SELECT * FROM view
+
+
+
+mysql> select intern_name, remark, tc_desc from interns i inner join intern_score s on i.intern_id = s.intern_id inner join test_cases t on  t.test_id = s.test_id;
+
+
+
+
+
+mysql> select intern_name, remark, tc_desc from interns i inner join intern_score s on i.intern_id = s.intern_id inner join test_cases t on  t.test_id = s.test_id where i.intern_id = 1;
++-------------+--------------+----------------------+
+| intern_name | remark       | tc_desc              |
++-------------+--------------+----------------------+
+| Abdul Basit | Good         | Attributes           |
+| Abdul Basit | Good         | Sub Attributes       |
+| Abdul Basit | Good         | Test Cases           |
+| Abdul Basit | Good         | Use Alignment        |
+| Abdul Basit | Good         | Use Bold             |
+| Abdul Basit | Good         | Use Header           |
+| Abdul Basit | Satisfactory | Spells Mistake       |
+| Abdul Basit | Good         | Grammatical Mistake  |
+| Abdul Basit | Good         | Basis of Commitment  |
+| Abdul Basit | Good         | Good Quality of Work |
+| Abdul Basit | Good         | Give Input           |
+| Abdul Basit | Good         | Accurateness         |
+| Abdul Basit | Good         | FeedBack_Status      |
+| Abdul Basit | 2.92         | Average_Rating       |
++-------------+--------------+----------------------+
+
+mysql> select intern_name, tc_desc, remark from interns i inner join intern_score s on i.intern_id = s.intern_id inner join test_cas
+es t on  t.test_id = s.test_id where i.intern_id = 5;
++-------------+----------------------+------------+
+| intern_name | tc_desc              | remark     |
++-------------+----------------------+------------+
+| Reema       | Attributes           | VeryGood   |
+| Reema       | Sub Attributes       | VeryGood   |
+| Reema       | Test Cases           | VeryGood   |
+| Reema       | Use Alignment        | Excellent  |
+| Reema       | Use Bold             | Execellent |
+| Reema       | Use Header           | Execellent |
+| Reema       | Spells Mistake       | VeryGood   |
+| Reema       | Grammatical Mistake  | VeryGood   |
+| Reema       | Basis of Commitment  | Excellent  |
+| Reema       | Good Quality of Work | VeryGood   |
+| Reema       | Give Input           | VeryGood   |
+| Reema       | Accurateness         | VeryGood   |
+| Reema       | FeedBack_Status      | VeryGood   |
+| Reema       | Average_Rating       | 4.25       |
++-------------+----------------------+------------+
+14 rows in set (0.00 sec)
+
+
+select sum(case remark when 'Execellent' then 5 else 0 end) from intern_score;
+select sum(case remark when 'Execellent' then 5 else 0 end) from intern_score where intern_id = 4;
+mysql> select sum(case remark when 'Execellent' then 5 end) as excellent, sum(case remark when 'VeryGood' then 4 end) as verygood, sum(case remark when 'Good' then 3 end) as good, sum(case remark when 'Satisfactory' then 2 end) as satisfactory, sum(case remark when 'Fair' then 1 end) as fair, sum(case remark when 'Poor' then 0  end) as poor from intern_score where intern_id = 5;
+
+
+
+But, whenever you want to access this record you need to type the whole query again. If you perform such operations quite often, it becomes really inconvenient and annoying.
+
+In such situation you can create a view to make the query results easier to access, as follow:
+mysql> CREATE VIEW analysis AS select intern_name, tc_desc, remark from interns i inner join intern_score s on i.intern_id = s.intern_id inner join test_cases t on  t.test_id = s.test_id where i.intern_id = 5;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> select * from analysis;
++-------------+----------------------+------------+
+| intern_name | tc_desc              | remark     |
++-------------+----------------------+------------+
+| Reema       | Attributes           | VeryGood   |
+| Reema       | Sub Attributes       | VeryGood   |
+| Reema       | Test Cases           | VeryGood   |
+| Reema       | Use Alignment        | Excellent  |
+| Reema       | Use Bold             | Execellent |
+| Reema       | Use Header           | Execellent |
+| Reema       | Spells Mistake       | VeryGood   |
+| Reema       | Grammatical Mistake  | VeryGood   |
+| Reema       | Basis of Commitment  | Excellent  |
+| Reema       | Good Quality of Work | VeryGood   |
+| Reema       | Give Input           | VeryGood   |
+| Reema       | Accurateness         | VeryGood   |
+| Reema       | FeedBack_Status      | VeryGood   |
+| Reema       | Average_Rating       | 4.25       |
++-------------+----------------------+------------+
+14 rows in set (0.00 sec)
+
+select atb_desc,sub_desc,tc_desc,intern_name,remark from attribute a inner join sub_attribute s on a.atb_id=s.atb_id inner join test_cases t on s.sub_id=t.sub_id inner join intern_score p on t.test_id=p.test_id inner join interns i on p.intern_id=i.intern_id;
+------------------------+------------------------------+----------------------+-----------------+--------------+
+| atb_desc               | sub_desc                     | tc_desc              | intern_name     | remark       |
++------------------------+------------------------------+----------------------+-----------------+--------------+
+| Performance Evaluation | Sheet Review                 | Attributes           | Abdul Basit     | Good         |
+| Performance Evaluation | Sheet Review                 | Attributes           | Amar Singh      | Satisfactory |
+| Performance Evaluation | Sheet Review                 | Attributes           | Desh Deepak Pal | Good         |
+| Performance Evaluation | Sheet Review                 | Attributes           | Reema           | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Attributes           | Aditya          | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Attributes           | Prachi Upadhyay | Fair         |
+| Performance Evaluation | Sheet Review                 | Attributes           | Madhu           | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Sub Attributes       | Abdul Basit     | Good         |
+| Performance Evaluation | Sheet Review                 | Sub Attributes       | Amar Singh      | Good         |
+| Performance Evaluation | Sheet Review                 | Sub Attributes       | Desh Deepak Pal | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Sub Attributes       | Reema           | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Sub Attributes       | Aditya          | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Sub Attributes       | Prachi Upadhyay | Good         |
+| Performance Evaluation | Sheet Review                 | Sub Attributes       | Madhu           | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Test Cases           | Abdul Basit     | Good         |
+| Performance Evaluation | Sheet Review                 | Test Cases           | Amar Singh      | Satisfactory |
+| Performance Evaluation | Sheet Review                 | Test Cases           | Desh Deepak Pal | Poor         |
+| Performance Evaluation | Sheet Review                 | Test Cases           | Reema           | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Test Cases           | Aditya          | VeryGood     |
+| Performance Evaluation | Sheet Review                 | Test Cases           | Prachi Upadhyay | Good         |
+| Performance Evaluation | Sheet Review                 | Test Cases           | Madhu           | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Alignment        | Abdul Basit     | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Alignment        | Amar Singh      | Excellent    |
+| Performance Evaluation | MarkDown Table Format        | Use Alignment        | Desh Deepak Pal | Excellent    |
+| Performance Evaluation | MarkDown Table Format        | Use Alignment        | Reema           | Excellent    |
+| Performance Evaluation | MarkDown Table Format        | Use Alignment        | Aditya          | VeryGood     |
+| Performance Evaluation | MarkDown Table Format        | Use Alignment        | Prachi Upadhyay | Excellent    |
+| Performance Evaluation | MarkDown Table Format        | Use Alignment        | Madhu           | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Bold             | Abdul Basit     | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Bold             | Amar Singh      | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Bold             | Desh Deepak Pal | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Bold             | Reema           | Execellent   |
+| Performance Evaluation | MarkDown Table Format        | Use Bold             | Aditya          | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Bold             | Prachi Upadhyay | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Bold             | Madhu           | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Header           | Abdul Basit     | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Header           | Amar Singh      | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Header           | Desh Deepak Pal | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Header           | Reema           | Execellent   |
+| Performance Evaluation | MarkDown Table Format        | Use Header           | Aditya          | Poor         |
+| Performance Evaluation | MarkDown Table Format        | Use Header           | Prachi Upadhyay | Good         |
+| Performance Evaluation | MarkDown Table Format        | Use Header           | Madhu           | Good         |
+| Performance Evaluation | Check Mistakes               | Spells Mistake       | Abdul Basit     | Satisfactory |
+| Performance Evaluation | Check Mistakes               | Spells Mistake       | Amar Singh      | Satisfactory |
+| Performance Evaluation | Check Mistakes               | Spells Mistake       | Desh Deepak Pal | Good         |
+| Performance Evaluation | Check Mistakes               | Spells Mistake       | Reema           | VeryGood     |
+| Performance Evaluation | Check Mistakes               | Spells Mistake       | Aditya          | Good         |
+| Performance Evaluation | Check Mistakes               | Spells Mistake       | Prachi Upadhyay | Fair         |
+| Performance Evaluation | Check Mistakes               | Spells Mistake       | Madhu           | Satisfactory |
+| Performance Evaluation | Check Mistakes               | Grammatical Mistake  | Abdul Basit     | Good         |
+| Performance Evaluation | Check Mistakes               | Grammatical Mistake  | Amar Singh      | Good         |
+| Performance Evaluation | Check Mistakes               | Grammatical Mistake  | Desh Deepak Pal | Execellent   |
+| Performance Evaluation | Check Mistakes               | Grammatical Mistake  | Reema           | VeryGood     |
+| Performance Evaluation | Check Mistakes               | Grammatical Mistake  | Aditya          | Satisfactory |
+| Performance Evaluation | Check Mistakes               | Grammatical Mistake  | Prachi Upadhyay | Good         |
+| Performance Evaluation | Check Mistakes               | Grammatical Mistake  | Madhu           | VeryGood     |
+| Delivery               | Submit Task on Time          | Basis of Commitment  | Abdul Basit     | Good         |
+| Delivery               | Submit Task on Time          | Basis of Commitment  | Amar Singh      | Excellent    |
+| Delivery               | Submit Task on Time          | Basis of Commitment  | Desh Deepak Pal | Excellent    |
+| Delivery               | Submit Task on Time          | Basis of Commitment  | Reema           | Excellent    |
+| Delivery               | Submit Task on Time          | Basis of Commitment  | Aditya          | Good         |
+| Delivery               | Submit Task on Time          | Basis of Commitment  | Prachi Upadhyay | Excellent    |
+| Delivery               | Submit Task on Time          | Basis of Commitment  | Madhu           | Good         |
+| Efforts                | Quality Assurance activities | Good Quality of Work | Abdul Basit     | Good         |
+| Efforts                | Quality Assurance activities | Good Quality of Work | Amar Singh      | Good         |
+| Efforts                | Quality Assurance activities | Good Quality of Work | Desh Deepak Pal | VeryGood     |
+| Efforts                | Quality Assurance activities | Good Quality of Work | Reema           | VeryGood     |
+| Efforts                | Quality Assurance activities | Good Quality of Work | Aditya          | Fair         |
+| Efforts                | Quality Assurance activities | Good Quality of Work | Prachi Upadhyay | Good         |
+| Efforts                | Quality Assurance activities | Good Quality of Work | Madhu           | VeryGood     |
+| Efforts                | Quality Assurance activities | Give Input           | Abdul Basit     | Good         |
+| Efforts                | Quality Assurance activities | Give Input           | Amar Singh      | Good         |
+| Efforts                | Quality Assurance activities | Give Input           | Desh Deepak Pal | Good         |
+| Efforts                | Quality Assurance activities | Give Input           | Reema           | VeryGood     |
+| Efforts                | Quality Assurance activities | Give Input           | Aditya          | VeryGood     |
+| Efforts                | Quality Assurance activities | Give Input           | Prachi Upadhyay | Good         |
+| Efforts                | Quality Assurance activities | Give Input           | Madhu           | VeryGood     |
+| Efforts                | Quality Assurance activities | Accurateness         | Abdul Basit     | Good         |
+| Efforts                | Quality Assurance activities | Accurateness         | Amar Singh      | Good         |
+| Efforts                | Quality Assurance activities | Accurateness         | Desh Deepak Pal | Good         |
+| Efforts                | Quality Assurance activities | Accurateness         | Reema           | VeryGood     |
+| Efforts                | Quality Assurance activities | Accurateness         | Aditya          | VeryGood     |
+| Efforts                | Quality Assurance activities | Accurateness         | Prachi Upadhyay | Good         |
+| Efforts                | Quality Assurance activities | Accurateness         | Madhu           | VeryGood     |
+| Assesment              | Feedback                     | FeedBack_Status      | Abdul Basit     | Good         |
+| Assesment              | Feedback                     | FeedBack_Status      | Amar Singh      | Good         |
+| Assesment              | Feedback                     | FeedBack_Status      | Desh Deepak Pal | VeryGood     |
+| Assesment              | Feedback                     | FeedBack_Status      | Reema           | VeryGood     |
+| Assesment              | Feedback                     | FeedBack_Status      | Aditya          | VeryGood     |
+| Assesment              | Feedback                     | FeedBack_Status      | Prachi Upadhyay | Good         |
+| Assesment              | Feedback                     | FeedBack_Status      | Madhu           | VeryGood     |
+| Average Rating         | blank_space                  | Average_Rating       | Abdul Basit     | 2.92         |
+| Average Rating         | blank_space                  | Average_Rating       | Amar Singh      | 3.083333333  |
+| Average Rating         | blank_space                  | Average_Rating       | Desh Deepak Pal | 3.583333333  |
+| Average Rating         | blank_space                  | Average_Rating       | Reema           | 4.25         |
+| Average Rating         | blank_space                  | Average_Rating       | Aditya          | 3            |
+| Average Rating         | blank_space                  | Average_Rating       | Prachi Upadhyay | 3            |
+| Average Rating         | blank_space                  | Average_Rating       | Madhu           | 3.583333333  |
++------------------------+------------------------------+----------------------+-----------------+--------------+

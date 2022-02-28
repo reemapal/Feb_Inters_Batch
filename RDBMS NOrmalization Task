@@ -1409,3 +1409,159 @@ select atb_desc,sub_desc,tc_desc,intern_name,remark from attribute a inner join 
 | Average Rating         | blank_space                  | Average_Rating       | Prachi Upadhyay | 3            |
 | Average Rating         | blank_space                  | Average_Rating       | Madhu           | 3.583333333  |
 +------------------------+------------------------------+----------------------+-----------------+--------------+
+
+mysql> SELECT intern_id,  SUM(remark)  FROM intern_score  GROUP BY intern_id;
+mysql> SELECT intern_id,  SUM(remark)  FROM intern_score  GROUP BY intern_id;
++-----------+-------------+
+| intern_id | SUM(remark) |
++-----------+-------------+
+|         1 |        2.92 |
+|         2 | 3.083333333 |
+|         3 |           3 |
+|         4 | 3.583333333 |
+|         5 |        4.25 |
+|         6 |           3 |
+|         7 | 3.583333333 |
++-----------+-------------+
+7 rows in set, 91 warnings (0.10 sec)
+
+Now, 
+CREATE  MATERIALIZED VIEW:
+
+mysql> CREATE TABLE analysis_mv (Name VARCHAR(128) NOT NULL , TestCase_Description VARCHAR(128) NOT NULL, Remark_Status VARCHAR(128)
+ NOT NULL );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO analysis_mv select intern_name, tc_desc, remark from interns i inner join intern_score s on i.intern_id = s.intern_id inner join test_cases t on  t.test_id = s.test_id ;
+Query OK, 98 rows affected (0.08 sec)
+Records: 98  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM analysis_mv;
++-----------------+----------------------+---------------+
+| Name            | TestCase_Description | Remark_Status |
++-----------------+----------------------+---------------+
+| Abdul Basit     | Attributes           | Good          |
+| Abdul Basit     | Sub Attributes       | Good          |
+| Abdul Basit     | Test Cases           | Good          |
+| Abdul Basit     | Use Alignment        | Good          |
+| Abdul Basit     | Use Bold             | Good          |
+| Abdul Basit     | Use Header           | Good          |
+| Abdul Basit     | Spells Mistake       | Satisfactory  |
+| Abdul Basit     | Grammatical Mistake  | Good          |
+| Abdul Basit     | Basis of Commitment  | Good          |
+| Abdul Basit     | Good Quality of Work | Good          |
+| Abdul Basit     | Give Input           | Good          |
+| Abdul Basit     | Accurateness         | Good          |
+| Abdul Basit     | FeedBack_Status      | Good          |
+| Abdul Basit     | Average_Rating       | 2.92          |
+| Amar Singh      | Attributes           | Satisfactory  |
+| Amar Singh      | Sub Attributes       | Good          |
+| Amar Singh      | Test Cases           | Satisfactory  |
+| Amar Singh      | Use Alignment        | Excellent     |
+| Amar Singh      | Use Bold             | Good          |
+| Amar Singh      | Use Header           | Good          |
+| Amar Singh      | Spells Mistake       | Satisfactory  |
+| Amar Singh      | Grammatical Mistake  | Good          |
+| Amar Singh      | Basis of Commitment  | Excellent     |
+| Amar Singh      | Good Quality of Work | Good          |
+| Amar Singh      | Give Input           | Good          |
+| Amar Singh      | Accurateness         | Good          |
+| Amar Singh      | FeedBack_Status      | Good          |
+| Amar Singh      | Average_Rating       | 3.083333333   |
+| Prachi Upadhyay | Attributes           | Fair          |
+| Prachi Upadhyay | Sub Attributes       | Good          |
+| Prachi Upadhyay | Test Cases           | Good          |
+| Prachi Upadhyay | Use Alignment        | Excellent     |
+| Prachi Upadhyay | Use Bold             | Good          |
+| Prachi Upadhyay | Use Header           | Good          |
+| Prachi Upadhyay | Spells Mistake       | Fair          |
+| Prachi Upadhyay | Grammatical Mistake  | Good          |
+| Prachi Upadhyay | Basis of Commitment  | Excellent     |
+| Prachi Upadhyay | Good Quality of Work | Good          |
+| Prachi Upadhyay | Give Input           | Good          |
+| Prachi Upadhyay | Accurateness         | Good          |
+| Prachi Upadhyay | FeedBack_Status      | Good          |
+| Prachi Upadhyay | Average_Rating       | 3             |
+| Desh Deepak Pal | Attributes           | Good          |
+| Desh Deepak Pal | Sub Attributes       | VeryGood      |
+| Desh Deepak Pal | Test Cases           | Poor          |
+| Desh Deepak Pal | Use Alignment        | Excellent     |
+| Desh Deepak Pal | Use Bold             | Good          |
+| Desh Deepak Pal | Use Header           | Good          |
+| Desh Deepak Pal | Spells Mistake       | Good          |
+| Desh Deepak Pal | Grammatical Mistake  | Execellent    |
+| Desh Deepak Pal | Basis of Commitment  | Excellent     |
+| Desh Deepak Pal | Good Quality of Work | VeryGood      |
+| Desh Deepak Pal | Give Input           | Good          |
+| Desh Deepak Pal | Accurateness         | Good          |
+| Desh Deepak Pal | FeedBack_Status      | VeryGood      |
+| Desh Deepak Pal | Average_Rating       | 3.583333333   |
+| Reema           | Attributes           | VeryGood      |
+| Reema           | Sub Attributes       | VeryGood      |
+| Reema           | Test Cases           | VeryGood      |
+| Reema           | Use Alignment        | Excellent     |
+| Reema           | Use Bold             | Execellent    |
+| Reema           | Use Header           | Execellent    |
+| Reema           | Spells Mistake       | VeryGood      |
+| Reema           | Grammatical Mistake  | VeryGood      |
+| Reema           | Basis of Commitment  | Excellent     |
+| Reema           | Good Quality of Work | VeryGood      |
+| Reema           | Give Input           | VeryGood      |
+| Reema           | Accurateness         | VeryGood      |
+| Reema           | FeedBack_Status      | VeryGood      |
+| Reema           | Average_Rating       | 4.25          |
+| Aditya          | Attributes           | VeryGood      |
+| Aditya          | Sub Attributes       | VeryGood      |
+| Aditya          | Test Cases           | VeryGood      |
+| Aditya          | Use Alignment        | VeryGood      |
+| Aditya          | Use Bold             | Good          |
+| Aditya          | Use Header           | Poor          |
+| Aditya          | Spells Mistake       | Good          |
+| Aditya          | Grammatical Mistake  | Satisfactory  |
+| Aditya          | Basis of Commitment  | Good          |
+| Aditya          | Good Quality of Work | Fair          |
+| Aditya          | Give Input           | VeryGood      |
+| Aditya          | Accurateness         | VeryGood      |
+| Aditya          | FeedBack_Status      | VeryGood      |
+| Aditya          | Average_Rating       | 3             |
+| Madhu           | Attributes           | VeryGood      |
+| Madhu           | Sub Attributes       | VeryGood      |
+| Madhu           | Test Cases           | Good          |
+| Madhu           | Use Alignment        | Good          |
+| Madhu           | Use Bold             | Good          |
+| Madhu           | Use Header           | Good          |
+| Madhu           | Spells Mistake       | Satisfactory  |
+| Madhu           | Grammatical Mistake  | VeryGood      |
+| Madhu           | Basis of Commitment  | Good          |
+| Madhu           | Good Quality of Work | VeryGood      |
+| Madhu           | Give Input           | VeryGood      |
+| Madhu           | Accurateness         | VeryGood      |
+| Madhu           | FeedBack_Status      | VeryGood      |
+| Madhu           | Average_Rating       | 3.583333333   |
++-----------------+----------------------+---------------+
+98 rows in set (0.00 sec)
+
+mysql> CREATE VIEW analysis AS select intern_name, tc_desc, remark from interns i inner join intern_score s on i.intern_id = s.intern_id inner join test_cases t on  t.test_id = s.test_id where i.intern_id = 5;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> select * from analysis;
++-------------+----------------------+------------+
+| intern_name | tc_desc              | remark     |
++-------------+----------------------+------------+
+| Reema       | Attributes           | VeryGood   |
+| Reema       | Sub Attributes       | VeryGood   |
+| Reema       | Test Cases           | VeryGood   |
+| Reema       | Use Alignment        | Excellent  |
+| Reema       | Use Bold             | Execellent |
+| Reema       | Use Header           | Execellent |
+| Reema       | Spells Mistake       | VeryGood   |
+| Reema       | Grammatical Mistake  | VeryGood   |
+| Reema       | Basis of Commitment  | Excellent  |
+| Reema       | Good Quality of Work | VeryGood   |
+| Reema       | Give Input           | VeryGood   |
+| Reema       | Accurateness         | VeryGood   |
+| Reema       | FeedBack_Status      | VeryGood   |
+| Reema       | Average_Rating       | 4.25       |
++-------------+----------------------+------------+
+14 rows in set (0.00 sec)
+

@@ -1,0 +1,418 @@
+reemapal@reemapal-VirtualBox:~$ podman ps
+CONTAINER ID  IMAGE                        COMMAND     CREATED     STATUS           PORTS                   NAMES
+70aa56d4e558  docker.io/library/mysql:5.7  mysqld      6 days ago  Up 29 hours ago  0.0.0.0:3306->3306/tcp  mysql
+reemapal@reemapal-VirtualBox:~$ podman exec -it mysql /bin/bash
+root@70aa56d4e558:/# exit
+reemapal@reemapal-VirtualBox:~$ podman exec  mysql 
+Error: must provide a non-empty command to start an exec session: invalid argument
+reemapal@reemapal-VirtualBox:~$ podman exec -i mysql /bin/bash
+ll
+/bin/bash: line 1: ll: command not found
+ll
+/bin/bash: line 2: ll: command not found
+^Creemapal@reemapal-VirtualBox:~$ podman exec -it mysql /bin/bash
+root@70aa56d4e558:/# ls
+bin   dev			  entrypoint.sh  home  lib64  mnt  proc  run   srv  tmp  var
+boot  docker-entrypoint-initdb.d  etc		 lib   media  opt  root  sbin  sys  usr
+root@70aa56d4e558:/# cd /var/lib
+root@70aa56d4e558:/var/lib# ls
+apt  dpkg  misc  mysql	mysql-files  mysql-keyring  pam  systemd
+root@70aa56d4e558:/var/lib# cd mysql
+root@70aa56d4e558:/var/lib/mysql# ls
+auto.cnf    client-cert.pem  ib_logfile0  ibtmp1	performance_schema  server-cert.pem
+ca-key.pem  client-key.pem   ib_logfile1  intern_batch	private_key.pem     server-key.pem
+ca.pem	    ib_buffer_pool   ibdata1	  mysql		public_key.pem	    sys
+root@70aa56d4e558:/var/lib/mysql#  cd p
+performance_schema/ private_key.pem     public_key.pem      
+root@70aa56d4e558:/var/lib/mysql#  cd performance_schema/
+root@70aa56d4e558:/var/lib/mysql/performance_schema# ls
+accounts.frm						  hosts.frm
+cond_instances.frm					  memory_summary_by_account_by_event_name.frm
+db.opt							  memory_summary_by_host_by_event_name.frm
+events_stages_current.frm				  memory_summary_by_thread_by_event_name.frm
+events_stages_history.frm				  memory_summary_by_user_by_event_name.frm
+events_stages_history_long.frm				  memory_summary_global_by_event_name.frm
+events_stages_summary_by_account_by_event_name.frm	  metadata_locks.frm
+events_stages_summary_by_host_by_event_name.frm		  mutex_instances.frm
+events_stages_summary_by_thread_by_event_name.frm	  objects_summary_global_by_type.frm
+events_stages_summary_by_user_by_event_name.frm		  performance_timers.frm
+events_stages_summary_global_by_event_name.frm		  prepared_statements_instances.frm
+events_statements_current.frm				  replication_applier_configuration.frm
+events_statements_history.frm				  replication_applier_status.frm
+events_statements_history_long.frm			  replication_applier_status_by_coordinator.frm
+events_statements_summary_by_account_by_event_name.frm	  replication_applier_status_by_worker.frm
+events_statements_summary_by_digest.frm			  replication_connection_configuration.frm
+events_statements_summary_by_host_by_event_name.frm	  replication_connection_status.frm
+events_statements_summary_by_program.frm		  replication_group_member_stats.frm
+events_statements_summary_by_thread_by_event_name.frm	  replication_group_members.frm
+events_statements_summary_by_user_by_event_name.frm	  rwlock_instances.frm
+events_statements_summary_global_by_event_name.frm	  session_account_connect_attrs.frm
+events_transactions_current.frm				  session_connect_attrs.frm
+events_transactions_history.frm				  session_status.frm
+events_transactions_history_long.frm			  session_variables.frm
+events_transactions_summary_by_account_by_event_name.frm  setup_actors.frm
+events_transactions_summary_by_host_by_event_name.frm	  setup_consumers.frm
+events_transactions_summary_by_thread_by_event_name.frm   setup_instruments.frm
+events_transactions_summary_by_user_by_event_name.frm	  setup_objects.frm
+events_transactions_summary_global_by_event_name.frm	  setup_timers.frm
+events_waits_current.frm				  socket_instances.frm
+events_waits_history.frm				  socket_summary_by_event_name.frm
+events_waits_history_long.frm				  socket_summary_by_instance.frm
+events_waits_summary_by_account_by_event_name.frm	  status_by_account.frm
+events_waits_summary_by_host_by_event_name.frm		  status_by_host.frm
+events_waits_summary_by_instance.frm			  status_by_thread.frm
+events_waits_summary_by_thread_by_event_name.frm	  status_by_user.frm
+events_waits_summary_by_user_by_event_name.frm		  table_handles.frm
+events_waits_summary_global_by_event_name.frm		  table_io_waits_summary_by_index_usage.frm
+file_instances.frm					  table_io_waits_summary_by_table.frm
+file_summary_by_event_name.frm				  table_lock_waits_summary_by_table.frm
+file_summary_by_instance.frm				  threads.frm
+global_status.frm					  user_variables_by_thread.frm
+global_variables.frm					  users.frm
+host_cache.frm						  variables_by_thread.frm
+root@70aa56d4e558:/var/lib/mysql/performance_schema# cd ..
+root@70aa56d4e558:/var/lib/mysql# ls
+auto.cnf    client-cert.pem  ib_logfile0  ibtmp1	performance_schema  server-cert.pem
+ca-key.pem  client-key.pem   ib_logfile1  intern_batch	private_key.pem     server-key.pem
+ca.pem	    ib_buffer_pool   ibdata1	  mysql		public_key.pem	    sys
+root@70aa56d4e558:/var/lib/mysql# ls -lrth
+total 185M
+-rw-r----- 1 mysql mysql  48M Feb 23 17:59 ib_logfile1
+-rw-r----- 1 mysql mysql   56 Feb 23 17:59 auto.cnf
+-rw------- 1 mysql mysql 1.7K Feb 23 17:59 ca-key.pem
+-rw-r--r-- 1 mysql mysql 1.1K Feb 23 17:59 ca.pem
+-rw------- 1 mysql mysql 1.7K Feb 23 17:59 server-key.pem
+-rw-r--r-- 1 mysql mysql 1.1K Feb 23 17:59 server-cert.pem
+-rw------- 1 mysql mysql 1.7K Feb 23 17:59 client-key.pem
+-rw-r--r-- 1 mysql mysql 1.1K Feb 23 17:59 client-cert.pem
+-rw-r--r-- 1 mysql mysql  452 Feb 23 17:59 public_key.pem
+-rw------- 1 mysql mysql 1.7K Feb 23 17:59 private_key.pem
+drwxr-x--- 2 mysql mysql 4.0K Feb 23 17:59 performance_schema
+drwxr-x--- 2 mysql mysql 4.0K Feb 23 17:59 mysql
+drwxr-x--- 2 mysql mysql  12K Feb 23 17:59 sys
+-rw-r----- 1 mysql mysql 1.4K Feb 23 17:59 ib_buffer_pool
+drwxr-x--- 2 mysql mysql 4.0K Mar  1 07:49 intern_batch
+-rw-r----- 1 mysql mysql  12M Mar  1 07:54 ibtmp1
+-rw-r----- 1 mysql mysql  76M Mar  1 07:56 ibdata1
+-rw-r----- 1 mysql mysql  48M Mar  1 07:56 ib_logfile0
+root@70aa56d4e558:/var/lib/mysql# cd ..
+root@70aa56d4e558:/var/lib# ls
+apt  dpkg  misc  mysql	mysql-files  mysql-keyring  pam  systemd
+root@70aa56d4e558:/var/lib# ..
+bash: ..: command not found
+root@70aa56d4e558:/var/lib# cd m
+misc/          mysql/         mysql-files/   mysql-keyring/ 
+root@70aa56d4e558:/var/lib# cd mysql-
+mysql-files/   mysql-keyring/ 
+root@70aa56d4e558:/var/lib# cd mysql-
+mysql-files/   mysql-keyring/ 
+root@70aa56d4e558:/var/lib# cd mysql-files/
+root@70aa56d4e558:/var/lib/mysql-files# ls
+root@70aa56d4e558:/var/lib/mysql-files# cd ..
+root@70aa56d4e558:/var/lib# exit
+reemapal@reemapal-VirtualBox:~$ podman cp mysql:/var/lib/mysql /home/reemapal/
+.ansible/                         Downloads/                        .profile
+.anyconnect                       git/                              Public/
+.bash_history                     .gitconfig                        reema.json
+.bash_logout                      gitea/                            snap/
+.bashrc                           git_igot/                         .ssh/
+BM_Setup/                         .gnupg/                           .sudo_as_admin_successful
+BM_Sir/                           Intern_Batch/                     sunbird-devops/
+.cache/                           kubectl.sha256                    Templates/
+commonr.yml                       .local/                           test.yml
+common.yml                        monitoring_upgrade_4.4.1/         .thunderbird/
+.config/                          .mozilla/                         .vboxclient-clipboard.pid
+config.cnf                        Music/                            .vboxclient-display-svga-x11.pid
+console_output_update_error       node_exporter-1.1.2.linux-amd64/  .vboxclient-draganddrop.pid
+.dbus/                            Pictures/                         .vboxclient-seamless.pid
+Desktop/                          privaterepo_master/               Videos/
+Documents/                        privaterepo_monitoring/           .viminfo
+reemapal@reemapal-VirtualBox:~$ podman cp mysql:/var/lib/mysql /home/reemapal/
+.ansible/                         Downloads/                        .profile
+.anyconnect                       git/                              Public/
+.bash_history                     .gitconfig                        reema.json
+.bash_logout                      gitea/                            snap/
+.bashrc                           git_igot/                         .ssh/
+BM_Setup/                         .gnupg/                           .sudo_as_admin_successful
+BM_Sir/                           Intern_Batch/                     sunbird-devops/
+.cache/                           kubectl.sha256                    Templates/
+commonr.yml                       .local/                           test.yml
+common.yml                        monitoring_upgrade_4.4.1/         .thunderbird/
+.config/                          .mozilla/                         .vboxclient-clipboard.pid
+config.cnf                        Music/                            .vboxclient-display-svga-x11.pid
+console_output_update_error       node_exporter-1.1.2.linux-amd64/  .vboxclient-draganddrop.pid
+.dbus/                            Pictures/                         .vboxclient-seamless.pid
+Desktop/                          privaterepo_master/               Videos/
+Documents/                        privaterepo_monitoring/           .viminfo
+reemapal@reemapal-VirtualBox:~$ podman cp mysql:/var/lib/mysql /home/reemapal/BM_Sir/
+reemapal@reemapal-VirtualBox:~$ ls
+BM_Setup     console_output_update_error  gitea                     Music                            Public          test.yml
+BM_Sir       Desktop                      git_igot                  node_exporter-1.1.2.linux-amd64  reema.json      Videos
+commonr.yml  Documents                    Intern_Batch              Pictures                         snap
+common.yml   Downloads                    kubectl.sha256            privaterepo_master               sunbird-devops
+config.cnf   git                          monitoring_upgrade_4.4.1  privaterepo_monitoring           Templates
+reemapal@reemapal-VirtualBox:~$ ls -lrth
+total 260K
+drwxr-xr-x  2 reemapal reemapal 4.0K Oct 29 22:31 Videos
+drwxr-xr-x  2 reemapal reemapal 4.0K Oct 29 22:31 Templates
+drwxr-xr-x  2 reemapal reemapal 4.0K Oct 29 22:31 Public
+drwxr-xr-x  2 reemapal reemapal 4.0K Oct 29 22:31 Pictures
+drwxr-xr-x  2 reemapal reemapal 4.0K Oct 29 22:31 Music
+drwxr-xr-x  2 reemapal reemapal 4.0K Oct 29 22:31 Documents
+-rw-rw-r--  1 reemapal reemapal   64 Nov 13 01:53 kubectl.sha256
+-rw-rw-r--  1 reemapal reemapal  92K Nov 26 13:06 reema.json
+-rw-rw-r--  1 reemapal reemapal  11K Jan 24 15:44 common.yml
+drwxrwxr-x  4 reemapal reemapal 4.0K Jan 29 12:28 privaterepo_master
+-rw-rw-r--  1 reemapal reemapal 9.0K Jan 29 13:31 commonr.yml
+drwxrwxr-x  4 reemapal reemapal 4.0K Jan 29 15:18 privaterepo_monitoring
+drwxrwxr-x  3 reemapal reemapal 4.0K Jan 29 23:18 git
+-rw-rw-r--  1 reemapal reemapal  15K Jan 30 02:40 test.yml
+drwxr-x---  3 reemapal reemapal 4.0K Jan 31 00:55 gitea
+drwx------  3 reemapal reemapal 4.0K Jan 31 01:28 snap
+-rw-rw-r--  1 reemapal reemapal  38K Jan 31 23:45 console_output_update_error
+drwx------  2 root     root     4.0K Feb  1 16:44 node_exporter-1.1.2.linux-amd64
+drwxrwxr-x 13 reemapal reemapal 4.0K Feb  1 22:44 sunbird-devops
+drwxrwxr-x  2 reemapal reemapal 4.0K Feb  1 22:45 git_igot
+drwxrwxr-x  3 reemapal reemapal 4.0K Feb 16 12:10 BM_Setup
+drwxrwxr-x  3 reemapal reemapal 4.0K Feb 18 16:05 monitoring_upgrade_4.4.1
+drwxrwxr-x  3 reemapal reemapal 4.0K Feb 25 17:50 Intern_Batch
+-rw-r--r--  1 root     root       66 Feb 25 21:56 config.cnf
+drwxr-xr-x  3 reemapal reemapal 4.0K Feb 25 22:45 Downloads
+drwxr-xr-x  2 reemapal reemapal 4.0K Feb 27 17:25 Desktop
+drwxrwxr-x  4 reemapal reemapal 4.0K Mar  2 01:49 BM_Sir
+reemapal@reemapal-VirtualBox:~$ cd BM_Sir/
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls
+1  clone.sh  final.sh  gitclone.sh  github_clone.sh  gitlab_clone.sh  mysql  output.csv  script.sh  sunbird-devops-eagle  tempfile
+reemapal@reemapal-VirtualBox:~/BM_Sir$ rm -rf .sh*
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls
+1  clone.sh  final.sh  gitclone.sh  github_clone.sh  gitlab_clone.sh  mysql  output.csv  script.sh  sunbird-devops-eagle  tempfile
+reemapal@reemapal-VirtualBox:~/BM_Sir$ rm -rf sh*
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls
+1  clone.sh  final.sh  gitclone.sh  github_clone.sh  gitlab_clone.sh  mysql  output.csv  script.sh  sunbird-devops-eagle  tempfile
+reemapal@reemapal-VirtualBox:~/BM_Sir$ rm -rf *.sh
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls
+1  mysql  output.csv  sunbird-devops-eagle  tempfile
+reemapal@reemapal-VirtualBox:~/BM_Sir$ rm -rf sunbird-devops-eagle/
+reemapal@reemapal-VirtualBox:~/BM_Sir$ rm -rf output.csv 
+reemapal@reemapal-VirtualBox:~/BM_Sir$ rm -rf 1
+reemapal@reemapal-VirtualBox:~/BM_Sir$ 
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls
+mysql  tempfile
+reemapal@reemapal-VirtualBox:~/BM_Sir$ vi tempfile 
+reemapal@reemapal-VirtualBox:~/BM_Sir$ rm -rf tempfile 
+reemapal@reemapal-VirtualBox:~/BM_Sir$ cd mysql/
+reemapal@reemapal-VirtualBox:~/BM_Sir/mysql$ ls
+auto.cnf    client-cert.pem  ibdata1      ibtmp1        performance_schema  server-cert.pem
+ca-key.pem  client-key.pem   ib_logfile0  intern_batch  private_key.pem     server-key.pem
+ca.pem      ib_buffer_pool   ib_logfile1  mysql         public_key.pem      sys
+reemapal@reemapal-VirtualBox:~/BM_Sir/mysql$ cd intern_batch/
+reemapal@reemapal-VirtualBox:~/BM_Sir/mysql/intern_batch$ ls
+analysis.frm     attribute.ibd     interns.frm       marks.frm     sub_attribute.frm  svc_subattribute.frm  test_cases.frm
+analysis_mv.frm  db.opt            interns.ibd       marks.ibd     sub_attribute.ibd  svc_subattribute.ibd  test_cases.ibd
+analysis_mv.ibd  intern_score.frm  Logical_Task.frm  sales_mv.frm  svc_attribute.frm  svctest_cases.frm
+attribute.frm    intern_score.ibd  Logical_Task.ibd  sales_mv.ibd  svc_attribute.ibd  svctest_cases.ibd
+reemapal@reemapal-VirtualBox:~/BM_Sir/mysql/intern_batch$ cd ..
+reemapal@reemapal-VirtualBox:~/BM_Sir/mysql$ ls
+auto.cnf    client-cert.pem  ibdata1      ibtmp1        performance_schema  server-cert.pem
+ca-key.pem  client-key.pem   ib_logfile0  intern_batch  private_key.pem     server-key.pem
+ca.pem      ib_buffer_pool   ib_logfile1  mysql         public_key.pem      sys
+reemapal@reemapal-VirtualBox:~/BM_Sir/mysql$ cd ..
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls
+mysql
+reemapal@reemapal-VirtualBox:~/BM_Sir$ 
+reemapal@reemapal-VirtualBox:~/BM_Sir$ 
+
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls -krth
+mysql
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls -;rth
+ls: cannot access '-': No such file or directory
+^[[A^Creemapal@reemapal-VirtualBox:~/BM_Sir$ ls -lrth
+total 4.0K
+drwxrwxrwt 6 reemapal reemapal 4.0K Mar  1 13:26 mysql
+reemapal@reemapal-VirtualBox:~/BM_Sir$ #podman run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD='redhat@123' -e MYSQL_USER=keenable -e MYSQL_PASSWORD='keenable' -e MYSQL_DATABASE=intern_batch docker.io/library/mysql:5.7
+reemapal@reemapal-VirtualBox:~/BM_Sir$ podman stop mysql
+mysql
+reemapal@reemapal-VirtualBox:~/BM_Sir$ #podman run -d --name mysql -p 3306:3306 --restart=always -v  -e MYSQL_ROOT_PASSWORD='redhat@123'  docker.io/library/mysql:5.7
+reemapal@reemapal-VirtualBox:~/BM_Sir$ ls -lrth
+total 4.0K
+drwxrwxrwt 6 reemapal reemapal 4.0K Mar  1 13:26 mysql
+reemapal@reemapal-VirtualBox:~/BM_Sir$ cd ..
+reemapal@reemapal-VirtualBox:~$ mv BM_Sir podman_volume
+reemapal@reemapal-VirtualBox:~$ podman run -d --name mysql -p 3306:3306 --restart=always -v /home/reemapal/ -e MYSQL_ROOT_PASSWORD='redhat@123'  docker.io/library/mysql:5.7
+.ansible/                         git/                              .profile
+.anyconnect                       .gitconfig                        Public/
+.bash_history                     gitea/                            reema.json
+.bash_logout                      git_igot/                         snap/
+.bashrc                           .gnupg/                           .ssh/
+BM_Setup/                         Intern_Batch/                     .sudo_as_admin_successful
+.cache/                           kubectl.sha256                    sunbird-devops/
+commonr.yml                       .local/                           Templates/
+common.yml                        monitoring_upgrade_4.4.1/         test.yml
+.config/                          .mozilla/                         .thunderbird/
+config.cnf                        Music/                            .vboxclient-clipboard.pid
+console_output_update_error       node_exporter-1.1.2.linux-amd64/  .vboxclient-display-svga-x11.pid
+.dbus/                            Pictures/                         .vboxclient-draganddrop.pid
+Desktop/                          podman_volume/                    .vboxclient-seamless.pid
+Documents/                        privaterepo_master/               Videos/
+Downloads/                        privaterepo_monitoring/           .viminfo
+reemapal@reemapal-VirtualBox:~$ podman run -d --name mysql -p 3306:3306 --restart=always -v /home/reemapal/ -e MYSQL_ROOT_PASSWORD='redhat@123'  docker.io/library/mysql:5.7
+.ansible/                         git/                              .profile
+.anyconnect                       .gitconfig                        Public/
+.bash_history                     gitea/                            reema.json
+.bash_logout                      git_igot/                         snap/
+.bashrc                           .gnupg/                           .ssh/
+BM_Setup/                         Intern_Batch/                     .sudo_as_admin_successful
+.cache/                           kubectl.sha256                    sunbird-devops/
+commonr.yml                       .local/                           Templates/
+common.yml                        monitoring_upgrade_4.4.1/         test.yml
+.config/                          .mozilla/                         .thunderbird/
+config.cnf                        Music/                            .vboxclient-clipboard.pid
+console_output_update_error       node_exporter-1.1.2.linux-amd64/  .vboxclient-display-svga-x11.pid
+.dbus/                            Pictures/                         .vboxclient-draganddrop.pid
+Desktop/                          podman_volume/                    .vboxclient-seamless.pid
+Documents/                        privaterepo_master/               Videos/
+Downloads/                        privaterepo_monitoring/           .viminfo
+reemapal@reemapal-VirtualBox:~$ podman run -d --name mysql -p 3306:3306 --restart=always -v /home/reemapal/podman_volume/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD='redhat@123'  docker.io/library/mysql:5.7
+Error: error creating container storage: the container name "mysql" is already in use by "70aa56d4e558105ab0b900021fb2acaaffa9dcec8b43e5a0832e8c7d6a11c920". You have to remove that container to be able to reuse that name.: that name is already in use
+reemapal@reemapal-VirtualBox:~$ podman run -d --name mysql_5.7 -p 3306:3306 --restart=always -v /home/reemapal/podman_volume/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD='redhat@123'  docker.io/library/mysql:5.7
+33a11739b7d2b15b7027553605ce54d6fea33285470884adda16273a8d1b4d49
+reemapal@reemapal-VirtualBox:~$ podman 
+attach       (Attach to a running container)
+auto-update  (Auto update containers according to their auto-update policy)
+build        (Build an image using instructions from Containerfiles)
+commit       (Create new image based on the changed container)
+container    (Manage containers)
+cp           (Copy files/folders between a container and the local filesystem)
+create       (Create but do not start a container)
+diff         (Display the changes to the object's file system)
+events       (Show podman events)
+exec         (Run a process in a running container)
+export       (Export container's filesystem contents as a tar archive)
+generate     (Generate structured data based on containers, pods or volumes)
+healthcheck  (Manage health checks on containers)
+help         (Help about any command)
+history      (Show history of a specified image)
+image        (Manage images)
+images       (List images in local storage)
+import       (Import a tarball to create a filesystem image)
+info         (Display podman system information)
+init         (Initialize one or more containers)
+inspect      (Display the configuration of object denoted by ID)
+kill         (Kill one or more running containers with a specific signal)
+load         (Load image(s) from a tar archive)
+login        (Login to a container registry)
+logout       (Logout of a container registry)
+--More--^C
+reemapal@reemapal-VirtualBox:~$ 
+reemapal@reemapal-VirtualBox:~$ podman ps
+CONTAINER ID  IMAGE                        COMMAND     CREATED         STATUS             PORTS                   NAMES
+33a11739b7d2  docker.io/library/mysql:5.7  mysqld      14 seconds ago  Up 14 seconds ago  0.0.0.0:3306->3306/tcp  mysql_5.7
+reemapal@reemapal-VirtualBox:~$ podman logs -f
+Error: specify at least one container name or ID to log
+reemapal@reemapal-VirtualBox:~$ podman logs -f mysql_5.7
+2022-03-01 20:26:52+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.37-1debian10 started.
+2022-03-01 20:26:53+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2022-03-01 20:26:53+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.37-1debian10 started.
+2022-03-01T20:26:53.585402Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2022-03-01T20:26:53.586744Z 0 [Note] mysqld (mysqld 5.7.37) starting as process 1 ...
+2022-03-01T20:26:53.591778Z 0 [Note] InnoDB: PUNCH HOLE support available
+2022-03-01T20:26:53.592027Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2022-03-01T20:26:53.592213Z 0 [Note] InnoDB: Uses event mutexes
+2022-03-01T20:26:53.592274Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2022-03-01T20:26:53.592302Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2022-03-01T20:26:53.592327Z 0 [Note] InnoDB: Using Linux native AIO
+2022-03-01T20:26:53.592604Z 0 [Note] InnoDB: Number of pools: 1
+2022-03-01T20:26:53.592735Z 0 [Note] InnoDB: Using CPU crc32 instructions
+2022-03-01T20:26:53.599189Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2022-03-01T20:26:53.621272Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2022-03-01T20:26:53.623300Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2022-03-01T20:26:54.167603Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2022-03-01T20:26:54.215334Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 13304614
+2022-03-01T20:26:54.216036Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 13304623
+2022-03-01T20:26:54.216440Z 0 [Note] InnoDB: Database was not shutdown normally!
+2022-03-01T20:26:54.216928Z 0 [Note] InnoDB: Starting crash recovery.
+2022-03-01T20:26:54.670756Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2022-03-01T20:26:54.672677Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2022-03-01T20:26:54.673438Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2022-03-01T20:26:55.087293Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2022-03-01T20:26:55.090356Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2022-03-01T20:26:55.090394Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2022-03-01T20:26:55.093593Z 0 [Note] InnoDB: Waiting for purge to start
+2022-03-01T20:26:55.146209Z 0 [Note] InnoDB: 5.7.37 started; log sequence number 13304623
+2022-03-01T20:26:55.147410Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2022-03-01T20:26:55.154257Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2022-03-01T20:26:55.221357Z 0 [Note] InnoDB: Buffer pool(s) load completed at 220301 20:26:55
+2022-03-01T20:26:55.269336Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+2022-03-01T20:26:55.269761Z 0 [Note] Skipping generation of SSL certificates as certificate files are present in data directory.
+2022-03-01T20:26:55.269878Z 0 [Warning] A deprecated TLS version TLSv1 is enabled. Please use TLSv1.2 or higher.
+2022-03-01T20:26:55.269918Z 0 [Warning] A deprecated TLS version TLSv1.1 is enabled. Please use TLSv1.2 or higher.
+2022-03-01T20:26:55.293235Z 0 [Warning] CA certificate ca.pem is self signed.
+2022-03-01T20:26:55.294528Z 0 [Note] Skipping generation of RSA key pair as key files are present in data directory.
+2022-03-01T20:26:55.323294Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2022-03-01T20:26:55.338982Z 0 [Note] IPv6 is available.
+2022-03-01T20:26:55.339624Z 0 [Note]   - '::' resolves to '::';
+2022-03-01T20:26:55.339981Z 0 [Note] Server socket created on IP: '::'.
+2022-03-01T20:26:55.359304Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2022-03-01T20:26:55.391415Z 0 [Note] Event Scheduler: Loaded 0 events
+2022-03-01T20:26:55.392104Z 0 [Note] mysqld: ready for connections.
+Version: '5.7.37'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+^Creemapal@reemapal-VirtualBox:~$ podman exec -it mysql_5.7 
+Error: must provide a non-empty command to start an exec session: invalid argument
+reemapal@reemapal-VirtualBox:~$ podman exec -it mysql_5.7 /bin/bash
+root@33a11739b7d2:/# mysql -uroot -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.37 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| intern_batch       |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use intern_batch;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------------+
+| Tables_in_intern_batch |
++------------------------+
+| Logical_Task           |
+| analysis               |
+| analysis_mv            |
+| attribute              |
+| intern_score           |
+| interns                |
+| marks                  |
+| sales_mv               |
+| sub_attribute          |
+| svc_attribute          |
+| svc_subattribute       |
+| svctest_cases          |
+| test_cases             |
++------------------------+
+13 rows in set (0.00 sec)
+
+mysql> select * from vie;
+ERROR 1146 (42S02): Table 'intern_batch.vie' doesn't exist
+mysql> select * from view;
+ERROR 1146 (42S02): Table 'intern_batch.view' doesn't exist
+mysql> 
+

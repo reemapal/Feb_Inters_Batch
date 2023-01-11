@@ -9,7 +9,7 @@
 | | | |Soap available|1|1|0|1|
 | | |Seating Seats|Clean Bench Seats|1|1|0|1|
 | | |Floors|Clean Floor|1|1|0|1|
-| |**Total**| | |**4**|**4**|**1**|**4**|
+|^ |**Total**| | |**4**|**4**|**1**|**4**|
 | | | | | | | | |
 |**2**|**Follow Covid Protocol**|Mask|Wear a face Mask|1|1|1|1|
 | | |Sanitizer|Disinfectant Spray Sanitizer|1|1|0|1|
